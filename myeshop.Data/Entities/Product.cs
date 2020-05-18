@@ -8,10 +8,11 @@ namespace myeshop.Data.Entities
     public class Product
     {
         public int Prod_ID { get; set; }
-        public int Prod_Name { get; set; }
+        public string Prod_Name { get; set; }
         public decimal Price { get; set; }
         public int Quantity { get; set; }
         public DateTime DateCreate { get; set; }
+        public string Description { get; set; }
         public Status Status { get; set; }
         public List<ProductInSupplier> ProductInSuppliers { get; set; }
         public List<ProductInSize> ProductInSizes { get; set; }
