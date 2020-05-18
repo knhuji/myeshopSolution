@@ -19,6 +19,101 @@ namespace myeshop.Data.Migrations
                 .HasAnnotation("Relational:MaxIdentifierLength", 128)
                 .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
+            modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<System.Guid>", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<string>("ClaimType")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("ClaimValue")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<Guid>("RoleId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("AppRoleClaims");
+                });
+
+            modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserClaim<System.Guid>", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<string>("ClaimType")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("ClaimValue")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<Guid>("UserId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("AppUserClaims");
+                });
+
+            modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserLogin<System.Guid>", b =>
+                {
+                    b.Property<Guid>("UserId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<string>("LoginProvider")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("ProviderDisplayName")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("ProviderKey")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("UserId");
+
+                    b.ToTable("AppUserLogins");
+                });
+
+            modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserRole<System.Guid>", b =>
+                {
+                    b.Property<Guid>("UserId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<Guid>("RoleId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.HasKey("UserId", "RoleId");
+
+                    b.ToTable("AppUserRoles");
+                });
+
+            modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserToken<System.Guid>", b =>
+                {
+                    b.Property<Guid>("UserId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<string>("LoginProvider")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Name")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Value")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("UserId");
+
+                    b.ToTable("AppUserTokens");
+                });
+
             modelBuilder.Entity("myeshop.Data.Entities.Cart", b =>
                 {
                     b.Property<int>("Cart_ID")
@@ -131,11 +226,15 @@ namespace myeshop.Data.Migrations
                     b.Property<DateTime>("DateCreate")
                         .HasColumnType("datetime2");
 
+                    b.Property<string>("Description")
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<decimal>("Price")
                         .HasColumnType("decimal(18,2)");
 
-                    b.Property<int>("Prod_Name")
-                        .HasColumnType("int");
+                    b.Property<string>("Prod_Name")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<int>("Quantity")
                         .HasColumnType("int");
@@ -148,6 +247,48 @@ namespace myeshop.Data.Migrations
                     b.HasKey("Prod_ID");
 
                     b.ToTable("Products");
+
+                    b.HasData(
+                        new
+                        {
+                            Prod_ID = 1,
+                            DateCreate = new DateTime(2020, 5, 18, 20, 0, 56, 752, DateTimeKind.Local).AddTicks(9540),
+                            Description = "Áo tay ngắn xuất xứ Hàn Quốc",
+                            Price = 300000m,
+                            Prod_Name = "DDU-183 -TROPICAL POCKET",
+                            Quantity = 2,
+                            Status = 1
+                        },
+                        new
+                        {
+                            Prod_ID = 2,
+                            DateCreate = new DateTime(2020, 5, 18, 20, 0, 56, 753, DateTimeKind.Local).AddTicks(9848),
+                            Description = "Vivarini",
+                            Price = 450000m,
+                            Prod_Name = "Sweatshirt Madonna and Child",
+                            Quantity = 1,
+                            Status = 1
+                        },
+                        new
+                        {
+                            Prod_ID = 3,
+                            DateCreate = new DateTime(2020, 5, 18, 20, 0, 56, 753, DateTimeKind.Local).AddTicks(9897),
+                            Description = "Chất liệu: 100% cotton Made in Việt Nam",
+                            Price = 320000m,
+                            Prod_Name = "CYPERNETIC ANGEL T-SHIRT",
+                            Quantity = 1,
+                            Status = 1
+                        },
+                        new
+                        {
+                            Prod_ID = 4,
+                            DateCreate = new DateTime(2020, 5, 18, 20, 0, 56, 753, DateTimeKind.Local).AddTicks(9900),
+                            Description = "Chất liệu: 100% cotton Made in Việt Nam",
+                            Price = 320000m,
+                            Prod_Name = "ANGRY JUNGLE T-SHIRT",
+                            Quantity = 2,
+                            Status = 1
+                        });
                 });
 
             modelBuilder.Entity("myeshop.Data.Entities.ProductInSize", b =>
@@ -178,6 +319,28 @@ namespace myeshop.Data.Migrations
                     b.HasIndex("Prod_ID");
 
                     b.ToTable("ProductInSuppliers");
+
+                    b.HasData(
+                        new
+                        {
+                            Supplier_ID = 1,
+                            Prod_ID = 1
+                        },
+                        new
+                        {
+                            Supplier_ID = 1,
+                            Prod_ID = 2
+                        },
+                        new
+                        {
+                            Supplier_ID = 2,
+                            Prod_ID = 3
+                        },
+                        new
+                        {
+                            Supplier_ID = 2,
+                            Prod_ID = 4
+                        });
                 });
 
             modelBuilder.Entity("myeshop.Data.Entities.Promotion", b =>

@@ -10,7 +10,7 @@ using myeshop.Data.EF;
 namespace myeshop.Data.Migrations
 {
     [DbContext(typeof(DataContext))]
-    [Migration("20200516160347_Initial")]
+    [Migration("20200518102956_Initial")]
     partial class Initial
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -136,8 +136,9 @@ namespace myeshop.Data.Migrations
                     b.Property<decimal>("Price")
                         .HasColumnType("decimal(18,2)");
 
-                    b.Property<int>("Prod_Name")
-                        .HasColumnType("int");
+                    b.Property<string>("Prod_Name")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<int>("Quantity")
                         .HasColumnType("int");
@@ -307,6 +308,26 @@ namespace myeshop.Data.Migrations
                     b.HasKey("Supplier_ID");
 
                     b.ToTable("Suppliers");
+
+                    b.HasData(
+                        new
+                        {
+                            Supplier_ID = 1,
+                            Address = "157 Trấn Hưng Đạo",
+                            Gmail = "tsunstore@gmail.com",
+                            Phone = 957587411,
+                            Status = 1,
+                            Supplier_Name = "TSUN"
+                        },
+                        new
+                        {
+                            Supplier_ID = 2,
+                            Address = "123 Điện Biên Phủ",
+                            Gmail = "badhabitstore@gmail.com",
+                            Phone = 679542147,
+                            Status = 1,
+                            Supplier_Name = "Bad Habit"
+                        });
                 });
 
             modelBuilder.Entity("myeshop.Data.Entities.Transaction", b =>
