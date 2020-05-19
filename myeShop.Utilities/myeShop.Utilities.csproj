@@ -1,0 +1,13 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp3.1</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\myeshop.Data\myeshop.Data.csproj" />
+    <ProjectReference Include="..\myeShop.ViewModels\myeShop.ViewModels.csproj" />
+    <ProjectReference Include="..\myeshop.WebApp\myeshop.WebApp.csproj" />
+  </ItemGroup>
+
+</Project>
