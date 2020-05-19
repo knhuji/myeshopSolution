@@ -233,11 +233,15 @@ namespace myeshop.Data.Migrations
                     b.Property<DateTime>("DateCreate")
                         .HasColumnType("datetime2");
 
+                    b.Property<string>("Description")
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<decimal>("Price")
                         .HasColumnType("decimal(18,2)");
 
-                    b.Property<int>("Prod_Name")
-                        .HasColumnType("int");
+                    b.Property<string>("Prod_Name")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<int>("Quantity")
                         .HasColumnType("int");
@@ -259,6 +263,41 @@ namespace myeshop.Data.Migrations
                             Price = 200000m,
                             Prod_Name = 1,
                             Quantity = 10,
+                            DateCreate = new DateTime(2020, 5, 18, 20, 0, 56, 752, DateTimeKind.Local).AddTicks(9540),
+                            Description = "Áo tay ngắn xuất xứ Hàn Quốc",
+                            Price = 300000m,
+                            Prod_Name = "DDU-183 -TROPICAL POCKET",
+                            Quantity = 2,
+                            Status = 1
+                        },
+                        new
+                        {
+                            Prod_ID = 2,
+                            DateCreate = new DateTime(2020, 5, 18, 20, 0, 56, 753, DateTimeKind.Local).AddTicks(9848),
+                            Description = "Vivarini",
+                            Price = 450000m,
+                            Prod_Name = "Sweatshirt Madonna and Child",
+                            Quantity = 1,
+                            Status = 1
+                        },
+                        new
+                        {
+                            Prod_ID = 3,
+                            DateCreate = new DateTime(2020, 5, 18, 20, 0, 56, 753, DateTimeKind.Local).AddTicks(9897),
+                            Description = "Chất liệu: 100% cotton Made in Việt Nam",
+                            Price = 320000m,
+                            Prod_Name = "CYPERNETIC ANGEL T-SHIRT",
+                            Quantity = 1,
+                            Status = 1
+                        },
+                        new
+                        {
+                            Prod_ID = 4,
+                            DateCreate = new DateTime(2020, 5, 18, 20, 0, 56, 753, DateTimeKind.Local).AddTicks(9900),
+                            Description = "Chất liệu: 100% cotton Made in Việt Nam",
+                            Price = 320000m,
+                            Prod_Name = "ANGRY JUNGLE T-SHIRT",
+                            Quantity = 2,
                             Status = 1
                         });
                 });
@@ -291,6 +330,28 @@ namespace myeshop.Data.Migrations
                     b.HasIndex("Prod_ID");
 
                     b.ToTable("ProductInSuppliers");
+
+                    b.HasData(
+                        new
+                        {
+                            Supplier_ID = 1,
+                            Prod_ID = 1
+                        },
+                        new
+                        {
+                            Supplier_ID = 1,
+                            Prod_ID = 2
+                        },
+                        new
+                        {
+                            Supplier_ID = 2,
+                            Prod_ID = 3
+                        },
+                        new
+                        {
+                            Supplier_ID = 2,
+                            Prod_ID = 4
+                        });
                 });
 
             modelBuilder.Entity("myeshop.Data.Entities.Promotion", b =>

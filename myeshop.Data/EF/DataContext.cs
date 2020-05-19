@@ -11,7 +11,7 @@ using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 
 namespace myeshop.Data.EF
 {
-    public class DataContext : DbContext
+    public class DataContext : IdentityDbContext<User,Role,Guid>
     {
         public DataContext(DbContextOptions options) : base(options)
         {
@@ -38,7 +38,7 @@ namespace myeshop.Data.EF
 
             modelBuilder.Entity<IdentityRoleClaim<Guid>>().ToTable("AppRoleClaims");
             modelBuilder.Entity<IdentityUserToken<Guid>>().ToTable("AppUserTokens").HasKey(x => x.UserId);
-
+            
             //Data Seeding
             modelBuilder.Seed();
             //base.OnModel
@@ -46,8 +46,6 @@ namespace myeshop.Data.EF
 
 
         public DbSet<Product> Products { get; set; }
-        public DbSet<User> Users { get; set; }
-        public DbSet<Role> Roles { get; set; }
         public DbSet<Transaction> Transactions { get; set; }
         public DbSet<Supplier> Suppliers { get; set; }
         public DbSet<ProductInSupplier> ProductInSuppliers { get; set; }
