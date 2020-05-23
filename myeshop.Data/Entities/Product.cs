@@ -18,6 +18,6 @@ namespace myeshop.Data.Entities
         public List<ProductInSize> ProductInSizes { get; set; }
         public List<OrderDetail> OrderDetails { get; set; }
         public List<Cart> Carts { get; set; }
-
+        public List<ProductImage> ProductImages { get; set; }
     }
 }

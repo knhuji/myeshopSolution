@@ -1,9 +1,9 @@
-﻿using myeshop.Data.Enums;
+﻿using Microsoft.AspNetCore.Http;
 using System;
 using System.Collections.Generic;
 using System.Text;
 
-namespace myeshop.Application.Catalog.Products.Dtos.Manage
+namespace myeShop.ViewModels.Catalog.Products
 {
     public class ProductCreateRequest
     {
@@ -12,5 +12,6 @@ namespace myeshop.Application.Catalog.Products.Dtos.Manage
         public int Quantity { get; set; }
         public DateTime DateCreate { get; set; }
         public string Description { get; set; }
+        public IFormFile ThumbnailImage { get; set; }
     }
 }

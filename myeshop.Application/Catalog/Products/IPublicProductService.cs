@@ -1,6 +1,6 @@
 ﻿using myeshop.Application.Catalog.Products.Dtos;
-using myeshop.Application.Catalog.Products.Dtos.Public;
-using myeshop.Application.Dtos;
+using myeShop.ViewModels.Catalog.Products;
+using myeShop.ViewModels.Common;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -10,6 +10,6 @@ namespace myeshop.Application.Catalog.Products
 {
     public interface IPublicProductService
     {
-        Task<PagedResult<ProductViewModel>> GetAllBySupplierID(GetProductPagingRequest request);
+        Task<PagedResult<ProductViewModel>> GetAllBySupplierID(GetPublicProductPagingRequest request);
     }
 }

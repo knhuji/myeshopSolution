@@ -10,8 +10,8 @@ using myeshop.Data.EF;
 namespace myeshop.Data.Migrations
 {
     [DbContext(typeof(DataContext))]
-    [Migration("20200519031137_add-migration seeddata")]
-    partial class addmigrationseeddata
+    [Migration("20200523160752_ChangeFile")]
+    partial class ChangeFile
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -235,11 +235,15 @@ namespace myeshop.Data.Migrations
                     b.Property<DateTime>("DateCreate")
                         .HasColumnType("datetime2");
 
+                    b.Property<string>("Description")
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<decimal>("Price")
                         .HasColumnType("decimal(18,2)");
 
-                    b.Property<int>("Prod_Name")
-                        .HasColumnType("int");
+                    b.Property<string>("Prod_Name")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<int>("Quantity")
                         .HasColumnType("int");
@@ -257,12 +261,86 @@ namespace myeshop.Data.Migrations
                         new
                         {
                             Prod_ID = 1,
-                            DateCreate = new DateTime(2020, 5, 19, 10, 11, 36, 780, DateTimeKind.Local).AddTicks(8593),
-                            Price = 200000m,
-                            Prod_Name = 1,
-                            Quantity = 10,
+                            DateCreate = new DateTime(2020, 5, 23, 23, 7, 50, 999, DateTimeKind.Local).AddTicks(1827),
+                            Description = "Áo tay ngắn xuất xứ Hàn Quốc",
+                            Price = 300000m,
+                            Prod_Name = "DDU-183 -TROPICAL POCKET",
+                            Quantity = 2,
+                            Status = 1
+                        },
+                        new
+                        {
+                            Prod_ID = 2,
+                            DateCreate = new DateTime(2020, 5, 23, 23, 7, 51, 1, DateTimeKind.Local).AddTicks(4530),
+                            Description = "Vivarini",
+                            Price = 450000m,
+                            Prod_Name = "Sweatshirt Madonna and Child",
+                            Quantity = 1,
+                            Status = 1
+                        },
+                        new
+                        {
+                            Prod_ID = 3,
+                            DateCreate = new DateTime(2020, 5, 23, 23, 7, 51, 1, DateTimeKind.Local).AddTicks(4613),
+                            Description = "Chất liệu: 100% cotton Made in Việt Nam",
+                            Price = 320000m,
+                            Prod_Name = "CYPERNETIC ANGEL T-SHIRT",
+                            Quantity = 1,
+                            Status = 1
+                        },
+                        new
+                        {
+                            Prod_ID = 4,
+                            DateCreate = new DateTime(2020, 5, 23, 23, 7, 51, 1, DateTimeKind.Local).AddTicks(4617),
+                            Description = "Chất liệu: 100% cotton Made in Việt Nam",
+                            Price = 320000m,
+                            Prod_Name = "ANGRY JUNGLE T-SHIRT",
+                            Quantity = 2,
                             Status = 1
                         });
+                });
+
+            modelBuilder.Entity("myeshop.Data.Entities.ProductImage", b =>
+                {
+                    b.Property<int>("Image_ID")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:IdentityIncrement", 1)
+                        .HasAnnotation("SqlServer:IdentitySeed", 1)
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<string>("Caption")
+                        .HasColumnType("nvarchar(200)")
+                        .HasMaxLength(200);
+
+                    b.Property<DateTime>("DateCreate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<DateTime>("DateCreated")
+                        .HasColumnType("datetime2");
+
+                    b.Property<long>("FileSize")
+                        .HasColumnType("bigint");
+
+                    b.Property<string>("ImagePath")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(200)")
+                        .HasMaxLength(200);
+
+                    b.Property<bool>("IsDefault")
+                        .HasColumnType("bit");
+
+                    b.Property<int>("Prod_ID")
+                        .HasColumnType("int");
+
+                    b.Property<int>("SortOrder")
+                        .HasColumnType("int");
+
+                    b.HasKey("Image_ID");
+
+                    b.HasIndex("Prod_ID");
+
+                    b.ToTable("ProductImages");
                 });
 
             modelBuilder.Entity("myeshop.Data.Entities.ProductInSize", b =>
@@ -293,6 +371,28 @@ namespace myeshop.Data.Migrations
                     b.HasIndex("Prod_ID");
 
                     b.ToTable("ProductInSuppliers");
+
+                    b.HasData(
+                        new
+                        {
+                            Supplier_ID = 1,
+                            Prod_ID = 1
+                        },
+                        new
+                        {
+                            Supplier_ID = 1,
+                            Prod_ID = 2
+                        },
+                        new
+                        {
+                            Supplier_ID = 2,
+                            Prod_ID = 3
+                        },
+                        new
+                        {
+                            Supplier_ID = 2,
+                            Prod_ID = 4
+                        });
                 });
 
             modelBuilder.Entity("myeshop.Data.Entities.Promotion", b =>
@@ -365,7 +465,7 @@ namespace myeshop.Data.Migrations
                         new
                         {
                             Id = new Guid("8d04dce2-969a-435d-bba4-df3f325983dc"),
-                            ConcurrencyStamp = "66492938-d492-4ded-b17b-47510bbd7178",
+                            ConcurrencyStamp = "967628bf-f41c-4327-bfb0-931b63e4f9a2",
                             Description = "Administrator role",
                             Name = "admin",
                             NormalizedName = "admin"
@@ -430,26 +530,6 @@ namespace myeshop.Data.Migrations
                     b.HasKey("Supplier_ID");
 
                     b.ToTable("Suppliers");
-
-                    b.HasData(
-                        new
-                        {
-                            Supplier_ID = 1,
-                            Address = "157 Trấn Hưng Đạo",
-                            Gmail = "tsunstore@gmail.com",
-                            Phone = 957587411,
-                            Status = 1,
-                            Supplier_Name = "TSUN"
-                        },
-                        new
-                        {
-                            Supplier_ID = 2,
-                            Address = "123 Điện Biên Phủ",
-                            Gmail = "badhabitstore@gmail.com",
-                            Phone = 679542147,
-                            Status = 1,
-                            Supplier_Name = "Bad Habit"
-                        });
                 });
 
             modelBuilder.Entity("myeshop.Data.Entities.Transaction", b =>
@@ -565,7 +645,7 @@ namespace myeshop.Data.Migrations
                         {
                             Id = new Guid("69bd714f-9576-45ba-b5b7-f00649be00de"),
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "7a0a401b-5fc1-48b2-82cc-23a50f2af23c",
+                            ConcurrencyStamp = "8dee2596-69ca-4a14-b057-08f65b56f80c",
                             Dob = new DateTime(2020, 1, 31, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Email = "maithiphuongth@gmail.com",
                             EmailConfirmed = true,
@@ -574,7 +654,7 @@ namespace myeshop.Data.Migrations
                             LockoutEnabled = false,
                             NormalizedEmail = "maithiphuongth@gmail.com",
                             NormalizedUserName = "admin",
-                            PasswordHash = "AQAAAAEAACcQAAAAEBtjsmvPK34DYn1DrJFDQMZZoWZDfxDhFcXItC/CCB71iLHD7l27KrmUsHXDFKLvSg==",
+                            PasswordHash = "AQAAAAEAACcQAAAAEP9KWEzvEzu/aLkc9sxG+RbdtV7TVX1D8NYlcLdcXOsfn/xPUh3um+a/QUgJT1HokQ==",
                             PhoneNumberConfirmed = false,
                             SecurityStamp = "",
                             TwoFactorEnabled = false,
@@ -617,6 +697,15 @@ namespace myeshop.Data.Migrations
                     b.HasOne("myeshop.Data.Entities.Product", "Product")
                         .WithMany("OrderDetails")
                         .HasForeignKey("Product_ID")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+                });
+
+            modelBuilder.Entity("myeshop.Data.Entities.ProductImage", b =>
+                {
+                    b.HasOne("myeshop.Data.Entities.Product", "Product")
+                        .WithMany("ProductImages")
+                        .HasForeignKey("Prod_ID")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
                 });

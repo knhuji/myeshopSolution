@@ -1,6 +1,8 @@
-﻿using myeshop.Application.Catalog.Products.Dtos;
-using myeshop.Application.Catalog.Products.Dtos.Manage;
-using myeshop.Application.Dtos;
+﻿using Microsoft.AspNetCore.Http;
+using myeshop.Data.Entities;
+using myeShop.ViewModels.Catalog.ProductImages;
+using myeShop.ViewModels.Catalog.Products;
+using myeShop.ViewModels.Common;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -15,6 +17,10 @@ namespace myeshop.Application.Catalog.Products
         Task<int> Delete(int productId);
         Task<bool> UpdatePrice(int productId, decimal newPrice);
         //Task<List<ProductViewModel>> GetAll();
-        Task<PagedResult<ProductViewModel>> GetAllPaging(GetProductPagingRequest request);
+        Task<PagedResult<ProductViewModel>> GetAllPaging(GetManageProductPagingRequest request);
+        Task<int> AddImage(int productId, ProductImageCreateRequest request);
+        Task<int> RemoveImage(int imageId);
+        Task<int> UpdateImage(int imageId, ProductImageCreateRequest request);
+        Task<List<ProductImageViewModel>> GetListImage(int productId);
     }
 }
