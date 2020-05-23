@@ -1,13 +1,13 @@
-﻿using myeshop.Application.Catalog.Products.Dtos;
-using myeshop.Application.Catalog.Products.Dtos.Public;
-using myeshop.Application.Dtos;
-using myeshop.Data.EF;
+﻿using myeshop.Data.EF;
 using System;
 using System.Linq;
 using System.Collections.Generic;
 using System.Text;
 using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
+using myeShop.ViewModels.Common;
+using myeShop.ViewModels.Catalog.Products;
+using myeshop.Application.Catalog.Products.Dtos;
 
 namespace myeshop.Application.Catalog.Products
 {
@@ -18,7 +18,7 @@ namespace myeshop.Application.Catalog.Products
         {
             _context = context;
         }
-        public async Task<PagedResult<ProductViewModel>> GetAllBySupplierID(GetProductPagingRequest request)
+        public async Task<PagedResult<ProductViewModel>> GetAllBySupplierID(GetPublicProductPagingRequest request)
         {
             var query = from p in _context.Products
                         join pis in _context.ProductInSuppliers on p.Prod_ID equals pis.Prod_ID
