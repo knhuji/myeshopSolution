@@ -157,10 +157,41 @@ namespace myeshop.Data.Migrations
                         new
                         {
                             Prod_ID = 1,
-                            DateCreate = new DateTime(2020, 5, 19, 10, 11, 36, 780, DateTimeKind.Local).AddTicks(8593),
-                            Price = 200000m,
-                            Prod_Name = 1,
-                            Quantity = 10,
+                            DateCreate = new DateTime(2020, 5, 23, 23, 7, 50, 999, DateTimeKind.Local).AddTicks(1827),
+                            Description = "Áo tay ngắn xuất xứ Hàn Quốc",
+                            Price = 300000m,
+                            Prod_Name = "DDU-183 -TROPICAL POCKET",
+                            Quantity = 2,
+                            Status = 1
+                        },
+                        new
+                        {
+                            Prod_ID = 2,
+                            DateCreate = new DateTime(2020, 5, 23, 23, 7, 51, 1, DateTimeKind.Local).AddTicks(4530),
+                            Description = "Vivarini",
+                            Price = 450000m,
+                            Prod_Name = "Sweatshirt Madonna and Child",
+                            Quantity = 1,
+                            Status = 1
+                        },
+                        new
+                        {
+                            Prod_ID = 3,
+                            DateCreate = new DateTime(2020, 5, 23, 23, 7, 51, 1, DateTimeKind.Local).AddTicks(4613),
+                            Description = "Chất liệu: 100% cotton Made in Việt Nam",
+                            Price = 320000m,
+                            Prod_Name = "CYPERNETIC ANGEL T-SHIRT",
+                            Quantity = 1,
+                            Status = 1
+                        },
+                        new
+                        {
+                            Prod_ID = 4,
+                            DateCreate = new DateTime(2020, 5, 23, 23, 7, 51, 1, DateTimeKind.Local).AddTicks(4617),
+                            Description = "Chất liệu: 100% cotton Made in Việt Nam",
+                            Price = 320000m,
+                            Prod_Name = "ANGRY JUNGLE T-SHIRT",
+                            Quantity = 2,
                             Status = 1
                         });
                 });
