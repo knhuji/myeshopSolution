@@ -31,6 +31,7 @@ namespace myeshop.Data.EF
             modelBuilder.ApplyConfiguration(new UserConfigurations());
             modelBuilder.ApplyConfiguration(new RoleConfigurations());
             modelBuilder.ApplyConfiguration(new TransactionConfigurations());
+            modelBuilder.ApplyConfiguration(new ProductImageConfiguration());
 
             modelBuilder.Entity<IdentityUserClaim<Guid>>().ToTable("AppUserClaims");
             modelBuilder.Entity<IdentityUserRole<Guid>>().ToTable("AppUserRoles").HasKey(x => new { x.UserId, x.RoleId });
@@ -44,7 +45,6 @@ namespace myeshop.Data.EF
             //base.OnModel
         }
 
-
         public DbSet<Product> Products { get; set; }
         public DbSet<Transaction> Transactions { get; set; }
         public DbSet<Supplier> Suppliers { get; set; }
@@ -55,5 +55,6 @@ namespace myeshop.Data.EF
         public DbSet<Cart> Carts { get; set; }
         public DbSet<Order> Orders { get; set; }
         public DbSet<OrderDetail> OrderDetails { get; set; }
+        public DbSet<ProductImage> ProductImages { get; set; }
     }
 }
