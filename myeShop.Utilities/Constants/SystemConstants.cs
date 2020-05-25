@@ -6,6 +6,6 @@ namespace myeShop.Utilities.Constants
 {
     public class SystemConstants
     {
-        public const string MainConnectionString = "myeshopSolution";
+        public const string MainConnectionString = "myeshopDB";
     }
 }

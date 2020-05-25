@@ -6,7 +6,7 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using myeshop.Application.System.Users;
-using myeShop.ViewModels.System.Uesrs;
+using myeShop.ViewModels.System.Users;
 
 namespace myeShop.BackendApi.Controllers
 {

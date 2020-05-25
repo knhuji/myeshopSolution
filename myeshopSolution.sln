@@ -9,11 +9,13 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "myeshop.Data", "myeshop.Dat
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "myeshop.Application", "myeshop.Application\myeshop.Application.csproj", "{62B39C37-E8E9-4527-801C-866A39EEF3AF}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "myeShop.BackendApi", "myeShop.BackendApi\myeShop.BackendApi.csproj", "{EE2104DF-6AF9-4B20-8B8F-2F1BE63AE578}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "myeShop.BackendApi", "myeShop.BackendApi\myeShop.BackendApi.csproj", "{EE2104DF-6AF9-4B20-8B8F-2F1BE63AE578}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "myeShop.Utilities", "myeShop.Utilities\myeShop.Utilities.csproj", "{547AC791-9B5B-4218-B75B-AB1DBFDC0E3A}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "myeShop.Utilities", "myeShop.Utilities\myeShop.Utilities.csproj", "{547AC791-9B5B-4218-B75B-AB1DBFDC0E3A}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "myeShop.ViewModels", "myeShop.ViewModels\myeShop.ViewModels.csproj", "{065B2CC7-FBFC-4605-8A2F-0BFB706CBDC2}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "myeShop.ViewModels", "myeShop.ViewModels\myeShop.ViewModels.csproj", "{065B2CC7-FBFC-4605-8A2F-0BFB706CBDC2}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "myeshop.AdminApp", "myeshop.AdminApp\myeshop.AdminApp.csproj", "{65068706-F881-49E2-815D-7776174FBE7C}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -45,6 +47,10 @@ Global
 		{065B2CC7-FBFC-4605-8A2F-0BFB706CBDC2}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{065B2CC7-FBFC-4605-8A2F-0BFB706CBDC2}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{065B2CC7-FBFC-4605-8A2F-0BFB706CBDC2}.Release|Any CPU.Build.0 = Release|Any CPU
+		{65068706-F881-49E2-815D-7776174FBE7C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{65068706-F881-49E2-815D-7776174FBE7C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{65068706-F881-49E2-815D-7776174FBE7C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{65068706-F881-49E2-815D-7776174FBE7C}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
