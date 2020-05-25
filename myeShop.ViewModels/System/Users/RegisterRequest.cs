@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace myeShop.ViewModels.System.Uesrs
+namespace myeShop.ViewModels.System.Users
 {
     public class RegisterRequest
     {

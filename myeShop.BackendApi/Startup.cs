@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using FluentValidation.AspNetCore;
+using FluentValidation;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
@@ -16,6 +17,7 @@ using myeshop.Application.System.Users;
 using myeshop.Data.EF;
 using myeshop.Data.Entities;
 using myeShop.Utilities.Constants;
+using myeShop.ViewModels.System.Users;
 using Swashbuckle.AspNetCore.SwaggerGen;
 
 namespace myeShop.BackendApi
@@ -37,7 +39,8 @@ namespace myeShop.BackendApi
             services.AddIdentity<User, Role>()
                  .AddEntityFrameworkStores<DataContext>()
                  .AddDefaultTokenProviders();
-            services.AddControllers().AddFluentValidation();
+            services.AddControllers()
+                .AddFluentValidation(fv=> fv.RegisterValidatorsFromAssemblyContaining<LoginRequestValidator>());
             
             services.AddControllersWithViews();
 
@@ -78,6 +81,8 @@ namespace myeShop.BackendApi
             services.AddTransient<SignInManager<User>, SignInManager<User>>();
             services.AddTransient<RoleManager<Role>, RoleManager<Role>>();
             services.AddTransient<IUserService, UserService>();
+            //services.AddTransient < IValidator<LoginRequest>, LoginRequestValidator >();
+            //services.AddTransient<IValidator<RegisterRequest>, RegisterRequestValidator>();
 
 
 
