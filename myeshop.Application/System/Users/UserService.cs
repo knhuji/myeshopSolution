@@ -4,7 +4,7 @@ using Microsoft.IdentityModel.Tokens;
 using myeshop.Application.System.Users;
 using myeshop.Data.Entities;
 using myeShop.Utilities.Exceptions;
-using myeShop.ViewModels.System.Uesrs;
+using myeShop.ViewModels.System.Users;
 
 using System;
 using System.Collections.Generic;
