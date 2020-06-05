@@ -3,8 +3,6 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.30002.166
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "myeshop.WebApp", "myeshop.WebApp\myeshop.WebApp.csproj", "{9D3C4C31-12A0-45AC-9805-833B28B8E158}"
-EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "myeshop.Data", "myeshop.Data\myeshop.Data.csproj", "{B4BA4D8B-4615-4880-874E-1B48B26322BE}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "myeshop.Application", "myeshop.Application\myeshop.Application.csproj", "{62B39C37-E8E9-4527-801C-866A39EEF3AF}"
@@ -15,7 +13,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "myeShop.Utilities", "myeSho
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "myeShop.ViewModels", "myeShop.ViewModels\myeShop.ViewModels.csproj", "{065B2CC7-FBFC-4605-8A2F-0BFB706CBDC2}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "myeshop.AdminApp", "myeshop.AdminApp\myeshop.AdminApp.csproj", "{65068706-F881-49E2-815D-7776174FBE7C}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "myeshop.AdminApp", "myeshop.AdminApp\myeshop.AdminApp.csproj", "{65068706-F881-49E2-815D-7776174FBE7C}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -23,10 +21,6 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{9D3C4C31-12A0-45AC-9805-833B28B8E158}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{9D3C4C31-12A0-45AC-9805-833B28B8E158}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{9D3C4C31-12A0-45AC-9805-833B28B8E158}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{9D3C4C31-12A0-45AC-9805-833B28B8E158}.Release|Any CPU.Build.0 = Release|Any CPU
 		{B4BA4D8B-4615-4880-874E-1B48B26322BE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{B4BA4D8B-4615-4880-874E-1B48B26322BE}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{B4BA4D8B-4615-4880-874E-1B48B26322BE}.Release|Any CPU.ActiveCfg = Release|Any CPU
