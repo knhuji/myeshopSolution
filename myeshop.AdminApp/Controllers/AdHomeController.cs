@@ -3,23 +3,26 @@ using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
-using myeshop.WebApp.Models;
+using myeshop.AdminApp.Models;
 
-namespace myeshop.WebApp.Controllers
+namespace myeshop.AdminApp.Controllers
 {
-    public class HomeController : Controller
+    [Authorize]
+    public class AdHomeController : Controller
     {
-        private readonly ILogger<HomeController> _logger;
+        private readonly ILogger<AdHomeController> _logger;
 
-        public HomeController(ILogger<HomeController> logger)
+        public AdHomeController(ILogger<AdHomeController> logger)
         {
             _logger = logger;
         }
 
         public IActionResult Index()
         {
+            var user = User.Identity.Name;
             return View();
         }
 

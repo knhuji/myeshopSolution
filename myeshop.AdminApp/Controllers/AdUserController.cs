@@ -18,11 +18,11 @@ using Microsoft.AspNetCore.Authorization;
 namespace myeshop.AdminApp.Controllers
 {
     
-    public class UserController : Controller
+    public class AdUserController : Controller
     {
         private readonly IUserApiClient _userApiClient;
         private readonly IConfiguration _configuration;
-        public UserController(IUserApiClient userApiClient, IConfiguration configuration)
+        public AdUserController(IUserApiClient userApiClient, IConfiguration configuration)
         {
             _userApiClient = userApiClient;
             _configuration = configuration;

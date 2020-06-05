@@ -22,7 +22,6 @@
     <ProjectReference Include="..\myeshop.Data\myeshop.Data.csproj" />
     <ProjectReference Include="..\myeShop.Utilities\myeShop.Utilities.csproj" />
     <ProjectReference Include="..\myeShop.ViewModels\myeShop.ViewModels.csproj" />
-    <ProjectReference Include="..\myeshop.WebApp\myeshop.WebApp.csproj" />
   </ItemGroup>
 
   <ItemGroup>
