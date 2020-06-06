@@ -32,8 +32,8 @@ namespace myeshop.AdminApp
             services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme)
                .AddCookie(options =>
                {
-                   options.LoginPath = "/User/Login/";
-                   options.AccessDeniedPath = "/User/Forbidden/";
+                   options.LoginPath = "/AdUser/Login/";
+                   options.AccessDeniedPath = "/AdUser/Forbidden/";
                });
 
 
