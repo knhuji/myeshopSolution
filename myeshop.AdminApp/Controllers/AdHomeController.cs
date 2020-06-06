@@ -10,7 +10,7 @@ using myeshop.AdminApp.Models;
 
 namespace myeshop.AdminApp.Controllers
 {
-    [Authorize]
+    
     public class AdHomeController : Controller
     {
         private readonly ILogger<AdHomeController> _logger;
