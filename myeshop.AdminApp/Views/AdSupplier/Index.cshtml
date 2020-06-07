@@ -1,0 +1,101 @@
+﻿@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/_LayoutAd.cshtml";
+}
+
+
+<div class="container-fluid">
+    <h1 class="mt-4">Quản lý thương hiệu</h1>
+    <ol class="breadcrumb mb-4">
+        <li class="breadcrumb-item"><a href="index.html">Dashboard</a></li>
+        <li class="breadcrumb-item active">Tables</li>
+    </ol>
+    <div class="card mb-4">
+        <div class="card-header"><i class="fas fa-table mr-1"></i>Danh sách thương hiệu</div>
+        <div class="card-body">
+            <div class="table-responsive">
+                <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                    <thead>
+                        <tr>
+                            <th>Mã</th>
+                            <th>Thương hiệu</th>
+                            <th>Gmail</th>
+                            <th>Địa chỉ</th>
+                            <th>SĐT</th>
+                            <th>Trạng thái</th>
+                        </tr>
+                    </thead>
+                    <tfoot>
+                        <tr>
+                            <th>Mã</th>
+                            <th>Thương hiệu</th>
+                            <th>Gmail</th>
+                            <th>Địa chỉ</th>
+                            <th>SĐT</th>
+                            <th>Trạng thái</th>
+                        </tr>
+                    </tfoot>
+                    <tbody>
+                        @*------------------Database------------------*@
+                        @*@foreach (var item in Model.Items)
+                        {
+                        <tr>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Supplier_ID)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Supplier_Name)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Gmail)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Address)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Phone)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Status)
+                            </td>
+                            <td>
+                                @Html.ActionLink("Sửa", "Edit", new { id = item.Id }) |
+                                @Html.ActionLink("Xem", "Details", new { id = item.Id }) |
+                                @Html.ActionLink("Xóa", "Delete", new { id = item.Id }) |
+                                @Html.ActionLink("Gán quyền", "RoleAssign", new { id = item.Id })
+                            </td>
+                        </tr>
+                        }*@
+                         @*------------------End data------------------*@
+                        @*------------------Mẫu------------------*@
+                        <tr>
+                            <td>Br1</td>
+                            <td>TSUN</td>
+                            <td>Mail nè</td>
+                            <td>Số nhà</td>
+                            <td>0354584133</td>
+                            <td>Hoạt động</td>
+                        </tr>
+                        <tr>
+                            <td>Br2</td>
+                            <td>Bad</td>
+                            <td>Mail nè</td>
+                            <td>Số nhà</td>
+                            <td>0354584133</td>
+                            <td>Hoạt động</td>
+                        </tr>
+                        <tr>
+                            <td>Br3</td>
+                            <td>Degrey</td>
+                            <td>Mail nè</td>
+                            <td>Số nhà</td>
+                            <td>0354584133</td>
+                            <td>Hoạt động</td>
+                        </tr>
+                        @*------------------Mẫu------------------*@
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
