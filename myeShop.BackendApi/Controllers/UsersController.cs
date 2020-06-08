@@ -26,7 +26,7 @@ namespace myeShop.BackendApi.Controllers
             if (!ModelState.IsValid)
                 return BadRequest(ModelState);
             var resultToken = await _userService.Authencate(request);
-            if (string.IsNullOrEmpty(resultToken))
+            if (string.IsNullOrEmpty(resultToken.ResultObj))
             {
                 return BadRequest("Username or password is incorect");
             }
@@ -40,7 +40,7 @@ namespace myeShop.BackendApi.Controllers
             if (!ModelState.IsValid)
                 return BadRequest(ModelState);
             var result = await _userService.Register(request);
-            if (result)
+            if (result.ResultObj)
             {
                 return BadRequest("register is unsuccessful");
             }

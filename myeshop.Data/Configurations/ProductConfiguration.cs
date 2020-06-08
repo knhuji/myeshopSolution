@@ -18,6 +18,7 @@ namespace myeshop.Data.Configurations
             builder.Property(x => x.Prod_Name).IsRequired();
             builder.Property(x => x.Price).IsRequired();
             builder.Property(x => x.Status).HasDefaultValue(Status.Active);
+            builder.Property(x => x.Description).IsRequired();
         }
     }
 }

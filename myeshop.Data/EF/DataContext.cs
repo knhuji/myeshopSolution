@@ -13,6 +13,8 @@ namespace myeshop.Data.EF
 {
     public class DataContext : IdentityDbContext<User,Role,Guid>
     {
+        public object Product;
+
         public DataContext(DbContextOptions options) : base(options)
         {
         }
@@ -45,7 +47,7 @@ namespace myeshop.Data.EF
             //base.OnModel
         }
 
-        public DbSet<Product> Products { get; set; }
+        public DbSet<Product> ProductImage { get; set; }
         public DbSet<Transaction> Transactions { get; set; }
         public DbSet<Supplier> Suppliers { get; set; }
         public DbSet<ProductInSupplier> ProductInSuppliers { get; set; }

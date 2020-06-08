@@ -10,8 +10,8 @@ using myeshop.Data.EF;
 namespace myeshop.Data.Migrations
 {
     [DbContext(typeof(DataContext))]
-    [Migration("20200523160752_ChangeFile")]
-    partial class ChangeFile
+    [Migration("20200608103828_234")]
+    partial class _234
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -236,6 +236,7 @@ namespace myeshop.Data.Migrations
                         .HasColumnType("datetime2");
 
                     b.Property<string>("Description")
+                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<decimal>("Price")
@@ -261,7 +262,7 @@ namespace myeshop.Data.Migrations
                         new
                         {
                             Prod_ID = 1,
-                            DateCreate = new DateTime(2020, 5, 23, 23, 7, 50, 999, DateTimeKind.Local).AddTicks(1827),
+                            DateCreate = new DateTime(2020, 6, 8, 17, 38, 28, 90, DateTimeKind.Local).AddTicks(7110),
                             Description = "Áo tay ngắn xuất xứ Hàn Quốc",
                             Price = 300000m,
                             Prod_Name = "DDU-183 -TROPICAL POCKET",
@@ -271,7 +272,7 @@ namespace myeshop.Data.Migrations
                         new
                         {
                             Prod_ID = 2,
-                            DateCreate = new DateTime(2020, 5, 23, 23, 7, 51, 1, DateTimeKind.Local).AddTicks(4530),
+                            DateCreate = new DateTime(2020, 6, 8, 17, 38, 28, 92, DateTimeKind.Local).AddTicks(697),
                             Description = "Vivarini",
                             Price = 450000m,
                             Prod_Name = "Sweatshirt Madonna and Child",
@@ -281,7 +282,7 @@ namespace myeshop.Data.Migrations
                         new
                         {
                             Prod_ID = 3,
-                            DateCreate = new DateTime(2020, 5, 23, 23, 7, 51, 1, DateTimeKind.Local).AddTicks(4613),
+                            DateCreate = new DateTime(2020, 6, 8, 17, 38, 28, 92, DateTimeKind.Local).AddTicks(739),
                             Description = "Chất liệu: 100% cotton Made in Việt Nam",
                             Price = 320000m,
                             Prod_Name = "CYPERNETIC ANGEL T-SHIRT",
@@ -291,7 +292,17 @@ namespace myeshop.Data.Migrations
                         new
                         {
                             Prod_ID = 4,
-                            DateCreate = new DateTime(2020, 5, 23, 23, 7, 51, 1, DateTimeKind.Local).AddTicks(4617),
+                            DateCreate = new DateTime(2020, 6, 8, 17, 38, 28, 92, DateTimeKind.Local).AddTicks(743),
+                            Description = "Chất liệu: 100% cotton Made in Việt Nam",
+                            Price = 320000m,
+                            Prod_Name = "ANGRY JUNGLE T-SHIRT",
+                            Quantity = 2,
+                            Status = 1
+                        },
+                        new
+                        {
+                            Prod_ID = 5,
+                            DateCreate = new DateTime(2020, 6, 8, 17, 38, 28, 92, DateTimeKind.Local).AddTicks(746),
                             Description = "Chất liệu: 100% cotton Made in Việt Nam",
                             Price = 320000m,
                             Prod_Name = "ANGRY JUNGLE T-SHIRT",
@@ -465,7 +476,7 @@ namespace myeshop.Data.Migrations
                         new
                         {
                             Id = new Guid("8d04dce2-969a-435d-bba4-df3f325983dc"),
-                            ConcurrencyStamp = "967628bf-f41c-4327-bfb0-931b63e4f9a2",
+                            ConcurrencyStamp = "56fbeda2-4818-4942-95b7-f069ae8ffbd9",
                             Description = "Administrator role",
                             Name = "admin",
                             NormalizedName = "admin"
@@ -645,7 +656,7 @@ namespace myeshop.Data.Migrations
                         {
                             Id = new Guid("69bd714f-9576-45ba-b5b7-f00649be00de"),
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "8dee2596-69ca-4a14-b057-08f65b56f80c",
+                            ConcurrencyStamp = "af7eeb42-32f4-4184-ba2b-228b53d03377",
                             Dob = new DateTime(2020, 1, 31, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Email = "maithiphuongth@gmail.com",
                             EmailConfirmed = true,
@@ -654,7 +665,7 @@ namespace myeshop.Data.Migrations
                             LockoutEnabled = false,
                             NormalizedEmail = "maithiphuongth@gmail.com",
                             NormalizedUserName = "admin",
-                            PasswordHash = "AQAAAAEAACcQAAAAEP9KWEzvEzu/aLkc9sxG+RbdtV7TVX1D8NYlcLdcXOsfn/xPUh3um+a/QUgJT1HokQ==",
+                            PasswordHash = "AQAAAAEAACcQAAAAEFxn3fabcWVQPuSCoXQ7QGsfF26eVj3mOzSyyeMOrcXhcHOi1IPvR7VYcUvUU6qPhA==",
                             PhoneNumberConfirmed = false,
                             SecurityStamp = "",
                             TwoFactorEnabled = false,
