@@ -19,6 +19,8 @@ using myeshop.Data.Entities;
 using myeShop.Utilities.Constants;
 using myeShop.ViewModels.System.Users;
 using Swashbuckle.AspNetCore.SwaggerGen;
+using myeshop.Application.Catalog.Products;
+using myeshop.Application.Common;
 
 namespace myeShop.BackendApi
 {
@@ -77,11 +79,13 @@ namespace myeShop.BackendApi
                     });
             });
 
+            services.AddTransient<IStorageService, FileStorageService>();
 
             services.AddTransient<UserManager<User>, UserManager<User>>();
             services.AddTransient<SignInManager<User>, SignInManager<User>>();
             services.AddTransient<RoleManager<Role>, RoleManager<Role>>();
             services.AddTransient<IUserService, UserService>();
+            services.AddTransient<IProductService, ProductService>();
             //services.AddTransient < IValidator<LoginRequest>, LoginRequestValidator >();
             //services.AddTransient<IValidator<RegisterRequest>, RegisterRequestValidator>();
 

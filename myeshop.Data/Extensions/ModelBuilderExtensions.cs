@@ -84,6 +84,16 @@ namespace myeshop.Data.Extensions
                     DateCreate = DateTime.Now,
                     Description = "Chất liệu: 100% cotton Made in Việt Nam",
                     Status = Status.Active
+                },
+                new Product()
+                {
+                    Prod_ID = 5,
+                    Prod_Name = "ANGRY JUNGLE T-SHIRT",
+                    Price = 320000,
+                    Quantity = 2,
+                    DateCreate = DateTime.Now,
+                    Description = "Chất liệu: 100% cotton Made in Việt Nam",
+                    Status = Status.Active
                 }
             );
             modelBuilder.Entity<ProductInSupplier>().HasData(

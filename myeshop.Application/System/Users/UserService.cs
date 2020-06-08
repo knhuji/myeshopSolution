@@ -4,6 +4,7 @@ using Microsoft.IdentityModel.Tokens;
 using myeshop.Application.System.Users;
 using myeshop.Data.Entities;
 using myeShop.Utilities.Exceptions;
+using myeShop.ViewModels.Common;
 using myeShop.ViewModels.System.Users;
 
 using System;
@@ -28,7 +29,7 @@ namespace myeshop.Application.System.Users
             _roleManager = roleManager;
             _config = config;
         }
-        public async Task<string> Authencate(LoginRequest request)
+        public async Task<ApiResult<string>> Authencate(LoginRequest request)
         {
             var user = await _userManager.FindByNameAsync(request.UserName);
             if (user == null) return null;
@@ -56,14 +57,14 @@ namespace myeshop.Application.System.Users
                 expires: DateTime.Now.AddHours(3),
                 signingCredentials: creds);
 
-            return new JwtSecurityTokenHandler().WriteToken(token);
+            return new ApiSuccessResult<String>(new JwtSecurityTokenHandler().WriteToken(token));
 
 
         }
 
         
 
-        public async Task<bool> Register(RegisterRequest request)
+        public async Task<ApiResult<bool>> Register(RegisterRequest request)
         {
             var user = new User()
             {
@@ -77,9 +78,9 @@ namespace myeshop.Application.System.Users
             var result = await _userManager.CreateAsync(user, request.Password);
             if (result.Succeeded)
             {
-                return true;
+                return new ApiSuccessResult<bool>();
             }
-            else return false;
+            else return new ApiErrorResult<bool>("Đăng ký không thành công");
         }
     }
 }

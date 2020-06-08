@@ -15,22 +15,24 @@ using System.Threading.Tasks;
 using Microsoft.Extensions.Primitives;
 using System.Net.Http.Headers;
 using myeShop.ViewModels.Catalog.ProductImages;
+using myeshop.Application.Catalog.Products.Dtos;
+using Microsoft.AspNetCore.Mvc;
 
 namespace myeshop.Application.Catalog.Products
 {
-    public class ManageProductService : IManageProductService
+    public class ProductService : IProductService
     {
         private readonly DataContext _context;
         private readonly IStorageService _storageService;
 
-        public ManageProductService(DataContext context, IStorageService storageService)
+        public ProductService(DataContext context, IStorageService storageService)
         {
             _context = context;
             _storageService = storageService;
         }
 
         
-        public async Task<int> AddImage(int productId, ProductImageCreateRequest request)
+        public async Task<ApiResult<int>> AddImage(int productId, ProductImageCreateRequest request)
         {
             var productImage = new ProductImage()
             {
@@ -48,10 +50,10 @@ namespace myeshop.Application.Catalog.Products
             }
             _context.ProductImages.Add(productImage);
             await _context.SaveChangesAsync();
-            return productImage.Prod_ID;
+            return new ApiSuccessResult<int>(productImage.Prod_ID); 
         }
 
-        public async Task<int> Create(ProductCreateRequest request)
+        public async Task<ApiResult<int>> Create(ProductCreateRequest request)
         {
             var product = new Product()
             {
@@ -77,18 +79,54 @@ namespace myeshop.Application.Catalog.Products
                     }
                 };
             }
-            _context.Products.Add(product);
+            _context.ProductImage.Add(product);
             await _context.SaveChangesAsync();
-            return product.Prod_ID;
-            
+            return new ApiSuccessResult<int>(product.Prod_ID);
+
         }
 
-        public async Task<int> Delete(int productId)
+        public async Task<ApiResult<ProductViewModel>> GetById(int productId)
         {
-            var product = await _context.Products.FindAsync(productId);
+            var product = await _context.ProductImage.FindAsync(productId);
+
+
+            var productViewModel = new ProductViewModel()
+            {
+                Prod_ID = product.Prod_ID,
+                DateCreate = product.DateCreate,
+                Description = product.Description,
+                Prod_Name = product.Prod_Name,
+                Price = product.Price,
+            };
+            return new ApiSuccessResult<ProductViewModel>(productViewModel);
+        }
+        public async Task<ApiResult<ProductImageViewModel>> GetImageById(int Image_ID)
+        {
+            var image = await _context.ProductImages.FindAsync(Image_ID);
+            var proImageViewModel = new ProductImageViewModel()
+            {
+                Image_ID = image.Image_ID,
+                Prod_ID = image.Prod_ID,
+                ImagePath = image.ImagePath,
+                Caption= image.Caption,
+                IsDefault=image.IsDefault,
+                DateCreate=image.DateCreate,
+                SortOrder=image.SortOrder,
+                FileSize=image.FileSize,
+                Product=image.Product,
+                DateCreated=image.DateCreated,
+
+            };
+            return new ApiSuccessResult<ProductImageViewModel>(proImageViewModel);
+        }
+
+
+        public async Task<ApiResult<bool>> Delete(int productId)
+        {
+            var product = await _context.ProductImage.FindAsync(productId);
             if (product == null)
             {
-                throw new MyeshopException($"Sản phẩm không tồn tại");
+                return new ApiErrorResult<bool>("Sản phẩm không tồn tại");
             }
             
             var images = _context.ProductImages.Where(i => i.Prod_ID == productId);
@@ -98,25 +136,25 @@ namespace myeshop.Application.Catalog.Products
                 await _storageService.DeleteFileAsync(image.ImagePath);
             }
 
-            _context.Products.Remove(product);
+            _context.ProductImage.Remove(product);
 
-            return await _context.SaveChangesAsync();
+            await _context.SaveChangesAsync();
+            return new ApiSuccessResult<bool>();
         }
 
-        public async Task<PagedResult<ProductViewModel>> GetAllPaging(GetManageProductPagingRequest request)
+        public async Task<ApiResult<PagedResult<ProductViewModel>>> GetAllPaging(GetManageProductPagingRequest request)
         {
-            var query = from p in _context.Products
-                        join pis in _context.ProductInSuppliers on p.Prod_ID equals pis.Prod_ID
-                        join s in _context.Suppliers on pis.Supplier_ID equals s.Supplier_ID
-                        select new { p, pis, s };
-            if (!string.IsNullOrEmpty(request.Keyword))
-            {
-                query = query.Where(x => x.p.Prod_Name.Contains(request.Keyword));
-            }
-            if (request.Supplier_ID.Count > 0)
-            {
-                query = query.Where(p => request.Supplier_ID.Contains(p.pis.Supplier_ID));
-            }
+            var query = from p in _context.ProductImage
+                        
+                        select new { p };
+            //if (!string.IsNullOrEmpty(request.Keyword))
+            //{
+            //    query = query.Where(x => x.p.Prod_Name.Contains(request.Keyword));
+            //}
+            // if (request.Supplier_ID.Count > 0)
+            //  {
+            //       query = query.Where(p => request.Supplier_ID.Contains(p.pis.Supplier_ID));
+            //  }
 
             //Paging
             int totalRow = await query.CountAsync();
@@ -136,29 +174,32 @@ namespace myeshop.Application.Catalog.Products
             //Select and projection
             var pagedResult = new PagedResult<ProductViewModel>()
             {
-                TotalRecord = totalRow,
+                TotalRecords = totalRow,
+                PageSize = request.PageSize,
+                PageIndex = request.PageIndex,
                 Items = data
             };
-            return pagedResult;
+            return new ApiSuccessResult<PagedResult<ProductViewModel>>(pagedResult);
         }
 
-        public Task<List<ProductImageViewModel>> GetListImage(int productId)
+        public Task<ApiResult<List<ProductImageViewModel>>> GetListImage(int productId)
         {
             throw new NotImplementedException();
         }
 
-        public async Task<int> RemoveImage(int imageId)
+        public async Task<ApiResult<int>> RemoveImage(int imageId)
         {
             var productImage = await _context.ProductImages.FindAsync(imageId);
             if (productImage == null)
                 throw new MyeshopException($"Cannot find an image with id {imageId}");
             _context.ProductImages.Remove(productImage);
-            return await _context.SaveChangesAsync();
+             await _context.SaveChangesAsync();
+            return new ApiSuccessResult<int>();
         }
 
-        public async Task<int> Update(ProductUpdateRequest request)
+        public async Task<ApiResult<int>> Update(ProductUpdateRequest request)
         {
-            var product = await _context.Products.FindAsync(request.Prod_ID);
+            var product = await _context.ProductImage.FindAsync(request.Prod_ID);
             if (product == null)
             {
                 throw new MyeshopException($"Sản phẩm không tồn tại");
@@ -180,10 +221,11 @@ namespace myeshop.Application.Catalog.Products
                     _context.ProductImages.Update(thumbnailImage);
                 }
             }
-            return await _context.SaveChangesAsync();
+            await _context.SaveChangesAsync();
+            return new ApiSuccessResult<int>();
         }
 
-        public async Task<int> UpdateImage(int imageId, ProductImageCreateRequest request)
+        public async Task<ApiResult<int>> UpdateImage(int imageId, ProductImageCreateRequest request)
         {
             var productImage = await _context.ProductImages.FindAsync(imageId);
             if (productImage == null)
@@ -195,17 +237,55 @@ namespace myeshop.Application.Catalog.Products
                 productImage.FileSize = request.ImageFile.Length;
             }
             _context.ProductImages.Update(productImage);
-            return await _context.SaveChangesAsync();
+            await _context.SaveChangesAsync();
+            return new ApiSuccessResult<int>();
         }
-        public async Task<bool> UpdatePrice(int productId, decimal newPrice)
+        public async Task<ApiResult<bool>> UpdatePrice(int productId, decimal newPrice)
         {
-            var product = await _context.Products.FindAsync(productId);
+            var product = await _context.ProductImage.FindAsync(productId);
             if (product == null)
             {
-                throw new MyeshopException($"Sản phẩm không tồn tại");
+                return new ApiErrorResult<bool>("Sản phẩm chưa tồn tại");
             }
             product.Price = newPrice;
-            return await _context.SaveChangesAsync() > 0; // >0 return true
+             await _context.SaveChangesAsync() ;
+            return new ApiSuccessResult<bool>();  
+        }
+
+        public async Task<ApiResult<PagedResult<ProductViewModel>>> GetAllBySupplierID(GetPublicProductPagingRequest request)
+        {
+            var query = from p in _context.ProductImage
+                        join pis in _context.ProductInSuppliers on p.Prod_ID equals pis.Prod_ID
+                        join s in _context.Suppliers on pis.Supplier_ID equals s.Supplier_ID
+                        select new { p, pis, s };
+
+            if (request.Supplier_ID.HasValue && request.Supplier_ID.Value > 0)
+            {
+                query = query.Where(p => p.pis.Supplier_ID == request.Supplier_ID);
+            }
+
+            //Paging
+            int totalRow = await query.CountAsync();
+            var data = await query.Skip((request.PageIndex - 1) * request.PageSize)
+                .Take(request.PageSize)
+                .Select(x => new ProductViewModel()
+                {
+                    Prod_ID = x.p.Prod_ID,
+                    Prod_Name = x.p.Prod_Name,
+                    DateCreate = x.p.DateCreate,
+                    Description = x.p.Description,
+                    Price = x.p.Price,
+                    Quantity = x.p.Quantity,
+                    Status = x.p.Status
+                }).ToListAsync();
+
+            //Select and projection
+            var pagedResult = new PagedResult<ProductViewModel>()
+            {
+                TotalRecords = totalRow,
+                Items = data
+            };
+            return new ApiSuccessResult<PagedResult<ProductViewModel>>(pagedResult);
         }
         private async Task<string> SaveFile(IFormFile file)
         {
