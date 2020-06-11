@@ -46,16 +46,17 @@ namespace myeshop.AdminApp
             });
 
             services.AddTransient<IUserApiClient, UserApiClient>();
+            services.AddTransient<IProductApiClient, ProductApiClient>();
 
             IMvcBuilder builder = services.AddRazorPages();
             var environment = Environment.GetEnvironmentVariable("ASPNETCORE_ENVIRONMENT");
 
-            #if DEBUG
-                        if (environment == Environments.Development)
-                        {
-                            builder.AddRazorRuntimeCompilation();
-                        }
-            #endif
+#if DEBUG
+            if (environment == Environments.Development)
+            {
+                builder.AddRazorRuntimeCompilation();
+            }
+#endif
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -78,6 +79,7 @@ namespace myeshop.AdminApp
             app.UseRouting();
 
             app.UseAuthorization();
+            app.UseSession();
 
             app.UseEndpoints(endpoints =>
             {

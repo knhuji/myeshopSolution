@@ -1,5 +1,7 @@
-﻿@{
-    ViewData["Title"] = "Index";
+﻿@using myeShop.ViewModels.Common;
+@model PagedResult<myeShop.ViewModels.Catalog.Products.ProductViewModel>
+@{
+    ViewData["Title"] = "Sản Phẩm";
     Layout = "~/Views/Shared/_LayoutAd.cshtml";
 }
 <div class="container-fluid">
@@ -19,7 +21,7 @@
                             <th>Tên sản phẩm</th>
                             <th>Giá</th>
                             <th>Số lượng</th>
-                            <th>Nhà cung cấp</th>
+                            @*<th>Nhà cung cấp</th>*@
                             <th>Mô tả</th>
                             <th>Ngày nhập</th>
                             <th>Trạng thái</th>
@@ -32,8 +34,7 @@
                             <th>Tên sản phẩm</th>
                             <th>Giá</th>
                             <th>Số lượng</th>
-                            <th>Nhà cung cấp</th>
-                            <th>Mô tả</th>m
+
                             <th>Ngày nhập</th>
                             <th>Trạng thái</th>
                             @*<th></th>*@
@@ -41,131 +42,132 @@
                     </tfoot>
                     <tbody>
                         @*------------------Database------------------*@
-                        @*@foreach (var item in Model.Items)
+                        @foreach (var item in Model.Items)
                         {
-                        <tr>
-                            <td>
-                                @Html.DisplayFor(modelItem => item.Prod_ID)
-                            </td>
-                            <td>
-                                @Html.DisplayFor(modelItem => item.Prod_Name)
-                            </td>
-                            <td>
-                                @Html.DisplayFor(modelItem => item.Price)
-                            </td>   
-                            <td>
-                                @Html.DisplayFor(modelItem => item.Quantity)
-                            </td>
-                            <td>
-                                @Html.DisplayFor(modelItem => item.Supplier)
-                            </td>
-                            <td>
-                                @Html.DisplayFor(modelItem => item.Description)
-                            </td>
-                            <td>
-                                @Html.DisplayFor(modelItem => item.DateCreate)
-                            </td>
-                            <td>
-                                @Html.DisplayFor(modelItem => item.Status)
-                            </td>
-                            <td>
-                                @Html.ActionLink("Sửa", "Edit", new { id = item.Id }) |
-                                @Html.ActionLink("Xem", "Details", new { id = item.Id }) |
-                                @Html.ActionLink("Xóa", "Delete", new { id = item.Id }) |
-                                @Html.ActionLink("Gán quyền", "RoleAssign", new { id = item.Id })
-                            </td>
-                        </tr>
-                        }*@
+                            <tr>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.Prod_ID)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.Prod_Name)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.Price)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.Quantity)
+                                </td>
+                                @*<td>
+                                        @Html.DisplayFor(modelItem => item.Supplier)
+                                    </td>*@
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.Description)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.DateCreate)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.Status)
+                                </td>
+                                <td>
+                                    @Html.ActionLink("Sửa", "Edit", new { id = item.Prod_ID }) |
+                                    @Html.ActionLink("Xem", "Details", new { id = item.Prod_ID }) |
+                                    @Html.ActionLink("Xóa", "Delete", new { id = item.Prod_ID }) |
+                                    @Html.ActionLink("Gán quyền", "RoleAssign", new { id = item.Prod_ID })
+                                </td>
+                            </tr>
+                        }
                         @*------------------End data------------------*@
                         @*------------------Mẫu------------------*@
-                        <tr>
-                            <td>Sp1</td>
-                            <td>Áo 1</td>
-                            <td>350000</td>
-                            <td>2</td>
-                            <td>Brand1</td>
-                            <td>Đây là áo</td>
-                            <td>2011/04/25</td>
-                            <td>Còn</td>
-                        </tr>
-                        <tr>
-                            <td>Sp2</td>
-                            <td>Áo 2</td>
-                            <td>350000</td>
-                            <td>2</td>
-                            <td>Brand2</td>
-                            <td>Đây là áo</td>
-                            <td>2011/04/25</td>
-                            <td>Còn</td>
-                        </tr>
-                        <tr>
-                            <td>Sp3</td>
-                            <td>Áo 3</td>
-                            <td>350000</td>
-                            <td>1</td>
-                            <td>Brand1</td>
-                            <td>Đây là áo</td>
-                            <td>2011/04/25</td>
-                            <td>Còn</td>
-                        </tr>
-                        <tr>
-                            <td>Sp4</td>
-                            <td>Áo 4</td>
-                            <td>350000</td>
-                            <td>2</td>
-                            <td>Brand2</td>
-                            <td>Đây là áo</td>
-                            <td>2011/04/25</td>
-                            <td>Còn</td>
-                        </tr>
-                        <tr>
-                            <td>Sp5</td>
-                            <td>Áo 5</td>
-                            <td>350000</td>
-                            <td>1</td>
-                            <td>Brand1</td>
-                            <td>Đây là áo</td>
-                            <td>2011/04/25</td>
-                            <td>Còn</td>
-                        </tr>
-                        <tr>
-                            <td>Sp6</td>
-                            <td>Áo 6</td>
-                            <td>350000</td>
-                            <td>2</td>
-                            <td>Brand1</td>
-                            <td>Đây là áo</td>
-                            <td>2011/04/25</td>
-                            <td>Còn</td>
-                        </tr>
-                        <tr>
-                            <td>Sp7</td>
-                            <td>Áo 7</td>
-                            <td>350000</td>
-                            <td>2</td>
-                            <td>Brand1</td>
-                            <td>Đây là áo</td>
-                            <td>2011/04/25</td>
-                            <td>Còn</td>
-                        </tr>
-                        <tr>
-                            <td>Sp8</td>
-                            <td>Áo 8</td>
-                            <td>350000</td>
-                            <td>2</td>
-                            <td>Brand1</td>
-                            <td>Đây là áo</td>
-                            <td>2011/04/25</td>
-                            <td>Còn</td>
-                        </tr>
+                        @*<tr>
+                                <td>Sp1</td>
+                                <td>Áo 1</td>
+                                <td>350000</td>
+                                <td>2</td>
+                                <td>Brand1</td>
+                                <td>Đây là áo</td>
+                                <td>2011/04/25</td>
+                                <td>Còn</td>
+                            </tr>
+                            <tr>
+                                <td>Sp2</td>
+                                <td>Áo 2</td>
+                                <td>350000</td>
+                                <td>2</td>
+                                <td>Brand2</td>
+                                <td>Đây là áo</td>
+                                <td>2011/04/25</td>
+                                <td>Còn</td>
+                            </tr>
+                            <tr>
+                                <td>Sp3</td>
+                                <td>Áo 3</td>
+                                <td>350000</td>
+                                <td>1</td>
+                                <td>Brand1</td>
+                                <td>Đây là áo</td>
+                                <td>2011/04/25</td>
+                                <td>Còn</td>
+                            </tr>
+                            <tr>
+                                <td>Sp4</td>
+                                <td>Áo 4</td>
+                                <td>350000</td>
+                                <td>2</td>
+                                <td>Brand2</td>
+                                <td>Đây là áo</td>
+                                <td>2011/04/25</td>
+                                <td>Còn</td>
+                            </tr>
+                            <tr>
+                                <td>Sp5</td>
+                                <td>Áo 5</td>
+                                <td>350000</td>
+                                <td>1</td>
+                                <td>Brand1</td>
+                                <td>Đây là áo</td>
+                                <td>2011/04/25</td>
+                                <td>Còn</td>
+                            </tr>
+                            <tr>
+                                <td>Sp6</td>
+                                <td>Áo 6</td>
+                                <td>350000</td>
+                                <td>2</td>
+                                <td>Brand1</td>
+                                <td>Đây là áo</td>
+                                <td>2011/04/25</td>
+                                <td>Còn</td>
+                            </tr>
+                            <tr>
+                                <td>Sp7</td>
+                                <td>Áo 7</td>
+                                <td>350000</td>
+                                <td>2</td>
+                                <td>Brand1</td>
+                                <td>Đây là áo</td>
+                                <td>2011/04/25</td>
+                                <td>Còn</td>
+                            </tr>
+                            <tr>
+                                <td>Sp8</td>
+                                <td>Áo 8</td>
+                                <td>350000</td>
+                                <td>2</td>
+                                <td>Brand1</td>
+                                <td>Đây là áo</td>
+                                <td>2011/04/25</td>
+                                <td>Còn</td>
+                            </tr>*@
                         @*------------------Mẫu------------------*@
 
 
                     </tbody>
                 </table>
             </div>
+            @*@await Component.InvokeAsync("Pager", Model)*@
         </div>
     </div>
 </div>
-    
+
 

@@ -1,6 +1,7 @@
-﻿
+﻿@using myeShop.ViewModels.Common;
+@model PagedResult<myeShop.ViewModels.Catalog.Products.ProductViewModel>
 @{
-    ViewData["Title"] = "Index";
+    ViewData["Title"] = "Sản Phẩm";
 }
 
 @*--------------------Banner--------------------*@
@@ -27,6 +28,42 @@
 <section class="ftco-section bg-light">
     <div class="container-fluid">
         <div class="row">
+
+            @if (Model != null)
+            {
+                foreach (var item in Model.Items)
+                {
+
+                    <div class="col-sm col-md-6 col-lg-3 ftco-animate">
+                        <div class="product">
+                            <a href="#" class="img-prod">
+                                <img class="img-fluid" src="~/WebApp/images/product-1.jpg" alt="Colorlib Template">
+                                <span class="status">30%</span>
+                            </a>
+                            <div class="text py-3 px-3">
+                                <h3><a href="#"> @Html.DisplayFor(modelItem => item.Prod_Name)</a></h3>
+                                <div class="d-flex">
+                                    <div class="pricing">
+                                        <p class="price"><span class="mr-2 price-dc"></span><span class="price-sale">@Html.DisplayFor(modelItem => item.Price)</span></p>
+                                    </div>
+                                    <div class="rating">
+                                        <p class="text-right">
+                                            <span class="ion-ios-star-outline"></span>
+                                            <span class="ion-ios-star-outline"></span>
+                                            <span class="ion-ios-star-outline"></span>
+                                            <span class="ion-ios-star-outline"></span>
+                                            <span class="ion-ios-star-outline"></span>
+                                        </p>
+                                    </div>
+                                </div>
+                                <hr>
+                                <p class="bottom-area d-flex">
+                                    <a href="#" class="add-to-cart"><span>Add to cart <i class="ion-ios-add ml-1"></i></span></a>
+                                    <a href="#" class="ml-auto"><span><i class="ion-ios-heart-empty"></i></span></a>
+                                </p>
+                            </div>
+                        </div>
+=======
             <div class="col-sm col-md-6 col-lg-3 ftco-animate">
                 <div class="product">
                     <a href="#" class="img-prod">
@@ -44,9 +81,10 @@
                         <p class="bottom-area d-flex">
                             <a href="#" class="add-to-cart"><span>Add to cart <i class="ion-ios-add ml-1"></i></span></a>
                         </p>
+
                     </div>
-                </div>
-            </div>
+                }
+            }
             <div class="col-sm col-md-6 col-lg-3 ftco-animate">
                 <div class="product">
                     <a href="#" class="img-prod">

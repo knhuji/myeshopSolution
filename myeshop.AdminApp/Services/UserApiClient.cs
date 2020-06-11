@@ -1,4 +1,6 @@
-﻿using Microsoft.Extensions.Http;
+﻿using Microsoft.Extensions.Configuration;
+using Microsoft.Extensions.Http;
+using myeShop.ViewModels.Common;
 using myeShop.ViewModels.System.Users;
 using Newtonsoft.Json;
 using System;
@@ -14,30 +16,40 @@ namespace myeshop.AdminApp.Services
     public class UserApiClient : IUserApiClient
     {
         private readonly IHttpClientFactory _httpClientFactory;
-        public UserApiClient(IHttpClientFactory httpClientFactory)
+        private readonly IConfiguration _configuration;
+        public UserApiClient(IHttpClientFactory httpClientFactory, IConfiguration configuration)
         {
             _httpClientFactory = httpClientFactory;
+            _configuration = configuration;
         }
-        public async Task<string> Authenticase(LoginRequest request)
-        {
-            var json = JsonConvert.SerializeObject(request);
-            var httpContent = new StringContent(json, Encoding.UTF8 ,"application/json");
-            var client = _httpClientFactory.CreateClient();
-            client.BaseAddress = new Uri("https://localhost:5001");
-            var reponse=await client.PostAsync("/api/Users/authenticate",httpContent);
-            var Token = await reponse.Content.ReadAsStringAsync();
-            return Token;
-        }
-
-        public async Task<bool> Register(RegisterRequest request)
+        public async Task<ApiResult<String>> Authenticase(LoginRequest request)
         {
             var json = JsonConvert.SerializeObject(request);
             var httpContent = new StringContent(json, Encoding.UTF8, "application/json");
             var client = _httpClientFactory.CreateClient();
             client.BaseAddress = new Uri("https://localhost:5001");
-            var reponse = await client.PostAsync("/api/Users/register", httpContent);
-           
-            return reponse.IsSuccessStatusCode;
+            var response = await client.PostAsync("/api/users/authenticate", httpContent);
+            if (response.IsSuccessStatusCode)
+            {
+                return JsonConvert.DeserializeObject<ApiSuccessResult<string>>(await response.Content.ReadAsStringAsync());
+            }
+
+            return JsonConvert.DeserializeObject<ApiErrorResult<string>>(await response.Content.ReadAsStringAsync());
+
+        }
+
+        public async Task<ApiResult<bool>> Register(RegisterRequest request)
+        {
+            var json = JsonConvert.SerializeObject(request);
+            var httpContent = new StringContent(json, Encoding.UTF8, "application/json");
+            var client = _httpClientFactory.CreateClient();
+            client.BaseAddress = new Uri("https://localhost:5001");
+            var response = await client.PostAsync("/api/Users/register", httpContent);
+            var result = await response.Content.ReadAsStringAsync();
+            if (response.IsSuccessStatusCode)
+                return JsonConvert.DeserializeObject<ApiSuccessResult<bool>>(result);
+
+            return JsonConvert.DeserializeObject<ApiErrorResult<bool>>(result);
         }
     }
 }

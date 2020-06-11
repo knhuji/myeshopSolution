@@ -1,4 +1,5 @@
-﻿using myeShop.ViewModels.System.Users;
+﻿using myeShop.ViewModels.Common;
+using myeShop.ViewModels.System.Users;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -8,7 +9,7 @@ namespace myeshop.AdminApp.Services
 {
     public interface IUserApiClient
     {
-        Task<String> Authenticase(LoginRequest request);
-        Task<bool> Register(RegisterRequest request);
+        Task<ApiResult<string>> Authenticase(LoginRequest request);
+        Task<ApiResult<bool>> Register(RegisterRequest request);
     }
 }

@@ -21,6 +21,9 @@ using myeShop.ViewModels.System.Users;
 using Swashbuckle.AspNetCore.SwaggerGen;
 using myeshop.Application.Catalog.Products;
 using myeshop.Application.Common;
+using myeshop.Application.Catalog.Carts;
+using StackExchange.Redis;
+using Microsoft.CodeAnalysis.Options;
 
 namespace myeShop.BackendApi
 {
@@ -36,15 +39,15 @@ namespace myeShop.BackendApi
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            
+
             services.AddDbContext<DataContext>(options =>
                 options.UseSqlServer(Configuration.GetConnectionString(SystemConstants.MainConnectionString)));
             services.AddIdentity<User, Role>()
                  .AddEntityFrameworkStores<DataContext>()
                  .AddDefaultTokenProviders();
             services.AddControllers()
-                .AddFluentValidation(fv=> fv.RegisterValidatorsFromAssemblyContaining<LoginRequestValidator>());
-            
+                .AddFluentValidation(fv => fv.RegisterValidatorsFromAssemblyContaining<LoginRequestValidator>());
+
             services.AddControllersWithViews();
 
             services.AddSwaggerGen(c =>
@@ -78,6 +81,22 @@ namespace myeShop.BackendApi
                       }
                     });
             });
+            //services.AddMemoryCache();
+            services.AddStackExchangeRedisCache(Options =>
+            {
+                Options.Configuration = "redisname.redis.cache.windows.net:6380,password=rediskey,ssl=True,abortConnect=False";
+            });
+
+            //services.AddSingleton<ConnectionMultiplexer>(sp =>
+            //{
+
+            //    var configuration = ConfigurationOptions.Parse(("127.0.0.1"), true);
+            //    configuration.ResolveDns = true;
+            //    configuration.AbortOnConnectFail = false;
+            //    return ConnectionMultiplexer.Connect(configuration);
+            //});
+
+            //services.AddSignalR().AddStackExchangeRedis("https://localhost:5003");
 
             services.AddTransient<IStorageService, FileStorageService>();
 
@@ -86,6 +105,7 @@ namespace myeShop.BackendApi
             services.AddTransient<RoleManager<Role>, RoleManager<Role>>();
             services.AddTransient<IUserService, UserService>();
             services.AddTransient<IProductService, ProductService>();
+            services.AddTransient<ICartService, CartService>();
             //services.AddTransient < IValidator<LoginRequest>, LoginRequestValidator >();
             //services.AddTransient<IValidator<RegisterRequest>, RegisterRequestValidator>();
 

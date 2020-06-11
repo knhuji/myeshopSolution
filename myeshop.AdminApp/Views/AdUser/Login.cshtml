@@ -1,5 +1,6 @@
 ﻿@using myeShop.ViewModels.System.Users
 @model LoginRequest
+
 @{
     Layout = null;
 }
@@ -27,7 +28,7 @@
             </div>
             <form asp-action="Login" asp-controller="AdUser" method="post">
                 <h3>Đăng Nhập</h3>
-
+                <div asp-validation-summary="All" class="text-danger"></div>
                 <div class="form-wrapper">
                     <input type="text" asp-for="UserName" placeholder="Tài khoản" class="form-control">
                     <i class="zmdi zmdi-account"></i>
