@@ -3,8 +3,6 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.EntityFrameworkCore;
-using myeshop.Data.EF;
 
 namespace myeshop.AdminApp.Controllers
 {
@@ -33,10 +31,6 @@ namespace myeshop.AdminApp.Controllers
                 ViewBag.SuccessMsg = TempData["result"];
             }
             return View(data.ResultObj);
-        }
-        public IActionResult Details()
-        {
-            return View();
         }
         public IActionResult Details()
         {
