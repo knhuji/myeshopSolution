@@ -28,11 +28,11 @@ namespace myeShop.BackendApi.Controllers
         }
 
         [HttpPut]
-        public async Task<IActionResult> Updatecart(string id,[FromQuery]Cart request)
+        public async Task<IActionResult> Updatecart(string id, [FromQuery]Cart request)
         {
             if (!ModelState.IsValid)
                 return BadRequest(ModelState);
-            var result = await _cartService.Updatecart(id,request);
+            var result = await _cartService.Updatecart(id, request);
             if (!result.IsSuccessed)
                 return BadRequest(result);
             return Ok();

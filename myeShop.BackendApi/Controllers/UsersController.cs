@@ -19,7 +19,7 @@ namespace myeShop.BackendApi.Controllers
         {
             _userService = userService;
         }
-        [HttpPost("authenticate")] 
+        [HttpPost("authenticate")]
         [AllowAnonymous]
         public async Task<IActionResult> Authenticate([FromBody]LoginRequest request)
         {
@@ -28,7 +28,7 @@ namespace myeShop.BackendApi.Controllers
             var resultToken = await _userService.Authencate(request);
             if (string.IsNullOrEmpty(resultToken.ResultObj))
             {
-                return BadRequest("Username or password is incorect");
+                return BadRequest(resultToken);
             }
             return Ok(resultToken);
         }
@@ -40,11 +40,11 @@ namespace myeShop.BackendApi.Controllers
             if (!ModelState.IsValid)
                 return BadRequest(ModelState);
             var result = await _userService.Register(request);
-            if (result.ResultObj)
+            if (!result.IsSuccessed)
             {
-                return BadRequest("register is unsuccessful");
+                return BadRequest(result);
             }
-            return Ok();
+            return Ok(result);
         }
     }
 }

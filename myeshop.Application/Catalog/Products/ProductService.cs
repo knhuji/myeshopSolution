@@ -31,7 +31,7 @@ namespace myeshop.Application.Catalog.Products
             _storageService = storageService;
         }
 
-        
+
         public async Task<ApiResult<int>> AddImage(int productId, ProductImageCreateRequest request)
         {
             var productImage = new ProductImage()
@@ -50,7 +50,7 @@ namespace myeshop.Application.Catalog.Products
             }
             _context.ProductImages.Add(productImage);
             await _context.SaveChangesAsync();
-            return new ApiSuccessResult<int>(productImage.Prod_ID); 
+            return new ApiSuccessResult<int>(productImage.Prod_ID);
         }
 
         public async Task<ApiResult<int>> Create(ProductCreateRequest request)
@@ -108,13 +108,13 @@ namespace myeshop.Application.Catalog.Products
                 Image_ID = image.Image_ID,
                 Prod_ID = image.Prod_ID,
                 ImagePath = image.ImagePath,
-                Caption= image.Caption,
-                IsDefault=image.IsDefault,
-                DateCreate=image.DateCreate,
-                SortOrder=image.SortOrder,
-                FileSize=image.FileSize,
-                Product=image.Product,
-                DateCreated=image.DateCreated,
+                Caption = image.Caption,
+                IsDefault = image.IsDefault,
+                DateCreate = image.DateCreate,
+                SortOrder = image.SortOrder,
+                FileSize = image.FileSize,
+                Product = image.Product,
+                DateCreated = image.DateCreated,
 
             };
             return new ApiSuccessResult<ProductImageViewModel>(proImageViewModel);
@@ -128,9 +128,9 @@ namespace myeshop.Application.Catalog.Products
             {
                 return new ApiErrorResult<bool>("Sản phẩm không tồn tại");
             }
-            
+
             var images = _context.ProductImages.Where(i => i.Prod_ID == productId);
-            
+
             foreach (var image in images)
             {
                 await _storageService.DeleteFileAsync(image.ImagePath);
@@ -145,7 +145,7 @@ namespace myeshop.Application.Catalog.Products
         public async Task<ApiResult<PagedResult<ProductViewModel>>> GetAllPaging(GetManageProductPagingRequest request)
         {
             var query = from p in _context.ProductImage
-                        
+
                         select new { p };
             //if (!string.IsNullOrEmpty(request.Keyword))
             //{
@@ -193,7 +193,7 @@ namespace myeshop.Application.Catalog.Products
             if (productImage == null)
                 throw new MyeshopException($"Cannot find an image with id {imageId}");
             _context.ProductImages.Remove(productImage);
-             await _context.SaveChangesAsync();
+            await _context.SaveChangesAsync();
             return new ApiSuccessResult<int>();
         }
 
@@ -206,6 +206,7 @@ namespace myeshop.Application.Catalog.Products
             }
 
             product.Prod_Name = request.Prod_Name;
+            product.Price = request.Price;
             product.Quantity = request.Quantity;
             product.Description = request.Description;
             product.Status = request.Status;
@@ -248,8 +249,8 @@ namespace myeshop.Application.Catalog.Products
                 return new ApiErrorResult<bool>("Sản phẩm chưa tồn tại");
             }
             product.Price = newPrice;
-             await _context.SaveChangesAsync() ;
-            return new ApiSuccessResult<bool>();  
+            await _context.SaveChangesAsync();
+            return new ApiSuccessResult<bool>();
         }
 
         public async Task<ApiResult<PagedResult<ProductViewModel>>> GetAllBySupplierID(GetPublicProductPagingRequest request)
