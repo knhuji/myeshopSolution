@@ -1,5 +1,5 @@
-﻿@using myeShop.ViewModels.System.Users;
-@model RegisterRequest
+﻿
+@model myeShop.ViewModels.System.Users.RegisterRequest;
 @{
     Layout = null;
 }
@@ -25,32 +25,41 @@
             <div class="image-holder">
                 <img src="/images/registration-form-1.jpg" alt="">
             </div>
-            <form asp-action="Register" asp-controller="User" method="post">
+            <form asp-action="Register" asp-controller="AdUser" method="post">
                 <h3>Đăng Ký</h3>
+                <div asp-validation-summary="All" class="text-danger"></div>
                 <div class="form-group">
                     <input type="text" asp-for="FirstName" placeholder="Họ" class="form-control">
+                    <span asp-validation-for="FirstName" class="text-danger"></span>
                     <input type="text" asp-for="LastName" placeholder="Tên" class="form-control">
+                    <span asp-validation-for="LastName" class="text-danger"></span>
                 </div>
                 <div class="form-wrapper">
                     <input type="text" asp-for="UserName" placeholder="Username" class="form-control">
+                    <span asp-validation-for="UserName" class="text-danger"></span>
                     <i class="zmdi zmdi-account"></i>
                 </div>
                 <div class="form-wrapper">
                     <input type="text" asp-for="Email" placeholder="Email Address" class="form-control">
+                    <span asp-validation-for="Email" class="text-danger"></span>
                     <i class="zmdi zmdi-email"></i>
                 </div>
                 <div class="form-wrapper">
                     <input type="date" asp-for="Dob" placeholder="Ngày sinh" class="form-control">
+                    <span asp-validation-for="Dob" class="text-danger"></span>
                 </div>
                 <div class="form-wrapper">
                     <input type="number" asp-for="PhoneNumber" placeholder="Số điện thoại" class="form-control">
+                    <span asp-validation-for="PhoneNumber" class="text-danger"></span>
                 </div>
                 <div class="form-wrapper">
                     <input type="password" asp-for="Password" placeholder="Password" class="form-control">
+                    <span asp-validation-for="Password" class="text-danger"></span>
                     <i class="zmdi zmdi-lock"></i>
                 </div>
                 <div class="form-wrapper">
                     <input type="password" asp-for="ConfirmPassword" placeholder="Confirm Password" class="form-control">
+                    <span asp-validation-for="ConfirmPassword" class="text-danger"></span>
                     <i class="zmdi zmdi-lock"></i>
                 </div>
                 <button type="submit">

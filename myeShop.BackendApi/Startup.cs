@@ -85,6 +85,7 @@ namespace myeShop.BackendApi
             services.AddStackExchangeRedisCache(Options =>
             {
                 Options.Configuration = "redisname.redis.cache.windows.net:6380,password=rediskey,ssl=True,abortConnect=False";
+                Options.InstanceName = "master";
             });
 
             //services.AddSingleton<ConnectionMultiplexer>(sp =>
