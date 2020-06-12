@@ -31,11 +31,13 @@
                 <div asp-validation-summary="All" class="text-danger"></div>
                 <div class="form-wrapper">
                     <input type="text" asp-for="UserName" placeholder="Tài khoản" class="form-control">
+                    <span asp-validation-for="UserName" class="text-danger"></span>
                     <i class="zmdi zmdi-account"></i>
                 </div>
 
                 <div class="form-wrapper">
                     <input type="password" asp-for="Password" placeholder="Mật khẩu" class="form-control">
+                    <span asp-validation-for="Password" class="text-danger"></span>
                     <i class="zmdi zmdi-lock"></i>
                 </div>
                 <div class="form-group">

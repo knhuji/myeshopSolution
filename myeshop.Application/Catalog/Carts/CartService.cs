@@ -20,9 +20,7 @@ namespace myeshop.Application.Catalog.Carts
         private readonly IDistributedCache _distributedCache;
         public CartService(IDistributedCache distributedCache)
         {
-            //ConnectionMultiplexer redis = ConnectionMultiplexer.Connect("127.0.0.1");
-
-            //_database = redis.GetDatabase();
+            
             _distributedCache = distributedCache;
         }
 

@@ -38,18 +38,20 @@ namespace myeshop.AdminApp.Services
 
         }
 
-        public async Task<ApiResult<bool>> Register(RegisterRequest request)
+        public async Task<ApiResult<string>> Register(RegisterRequest request)
         {
-            var json = JsonConvert.SerializeObject(request);
-            var httpContent = new StringContent(json, Encoding.UTF8, "application/json");
             var client = _httpClientFactory.CreateClient();
             client.BaseAddress = new Uri("https://localhost:5001");
-            var response = await client.PostAsync("/api/Users/register", httpContent);
+
+            var json = JsonConvert.SerializeObject(request);
+            var httpContent = new StringContent(json, Encoding.UTF8, "application/json");
+
+            var response = await client.PostAsync($"/api/users/register", httpContent);
             var result = await response.Content.ReadAsStringAsync();
             if (response.IsSuccessStatusCode)
-                return JsonConvert.DeserializeObject<ApiSuccessResult<bool>>(result);
+                return JsonConvert.DeserializeObject<ApiSuccessResult<string>>(result);
 
-            return JsonConvert.DeserializeObject<ApiErrorResult<bool>>(result);
+            return JsonConvert.DeserializeObject<ApiErrorResult<string>>(result);
         }
     }
 }
