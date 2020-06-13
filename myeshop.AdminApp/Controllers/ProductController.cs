@@ -6,6 +6,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using myeshop.AdminApp.Services;
 using myeShop.ViewModels.Catalog.Products;
+using Microsoft.EntityFrameworkCore;
 
 namespace myeshop.AdminApp.Controllers
 {
@@ -13,6 +14,7 @@ namespace myeshop.AdminApp.Controllers
     {
         private readonly IConfiguration _configuration;
         private readonly IProductApiClient _productApiClient;
+
         public ProductController(IConfiguration configuration, IProductApiClient productApiClient)
         {
 
@@ -35,7 +37,7 @@ namespace myeshop.AdminApp.Controllers
             }
             return View(data.ResultObj);
         }
-        [HttpGet]
+
         public async Task<IActionResult> Details(int id)
         {
             var result = await _productApiClient.GetById(id);

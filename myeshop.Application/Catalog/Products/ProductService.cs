@@ -84,19 +84,16 @@ namespace myeshop.Application.Catalog.Products
             return new ApiSuccessResult<int>(product.Prod_ID);
 
         }
-
         public async Task<ApiResult<ProductViewModel>> GetById(int productId)
         {
             var product = await _context.ProductImage.FindAsync(productId);
-
-
             var productViewModel = new ProductViewModel()
             {
                 Prod_ID = product.Prod_ID,
                 DateCreate = product.DateCreate,
                 Description = product.Description,
                 Prod_Name = product.Prod_Name,
-                Price = product.Price,
+                Price = product.Price
             };
             return new ApiSuccessResult<ProductViewModel>(productViewModel);
         }

@@ -33,9 +33,10 @@
                 {
 
                     <div class="col-sm col-md-6 col-lg-3 ftco-animate">
-                        <div class="product"  >
-                            <button><a asp-action="Details" asp-controller="Product" asp-route-id="@item.Prod_ID">>Details</a></button>
-                            <a href="#" class="img-prod">
+
+                        <div class="product">
+                            <a asp-area="" asp-controller="Product" asp-action="Details" asp-route-id="@item.Prod_ID" class="img-prod">
+
                                 <img class="img-fluid" src="~/WebApp/images/product-1.jpg" alt="Colorlib Template">
                                 <span class="status">30%</span>
                             </a>
