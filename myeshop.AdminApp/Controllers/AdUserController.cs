@@ -46,7 +46,7 @@ namespace myeshop.AdminApp.Controllers
         public async Task<IActionResult> Login(LoginRequest request)
         {
             if (!ModelState.IsValid)
-                return View(ModelState);
+                return View();
 
             var result = await _userApiClient.Authenticase(request);
             if (result.ResultObj == null)
