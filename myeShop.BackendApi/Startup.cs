@@ -24,6 +24,7 @@ using myeshop.Application.Common;
 using myeshop.Application.Catalog.Carts;
 using StackExchange.Redis;
 using Microsoft.CodeAnalysis.Options;
+using myeshop.Application.Catalog.Suppliers;
 
 namespace myeShop.BackendApi
 {
@@ -106,6 +107,7 @@ namespace myeShop.BackendApi
             services.AddTransient<RoleManager<Role>, RoleManager<Role>>();
             services.AddTransient<IUserService, UserService>();
             services.AddTransient<IProductService, ProductService>();
+            services.AddTransient<ISupplierService, SupplierService>();
             services.AddTransient<ICartService, CartService>();
             //services.AddTransient < IValidator<LoginRequest>, LoginRequestValidator >();
             //services.AddTransient<IValidator<RegisterRequest>, RegisterRequestValidator>();
