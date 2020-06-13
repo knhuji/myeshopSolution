@@ -31,14 +31,20 @@ namespace myeShop.BackendApi.Controllers
         }
 
         [HttpGet("{productId}")]
+        //public async Task<IActionResult> GetById(int productId)
+        //{
+        //    var product = await _productService.GetById(productId);
+        //    if (!product.IsSuccessed)
+        //        return BadRequest();
+        //    return Ok(product.ResultObj);
+        //}
         public async Task<IActionResult> GetById(int productId)
         {
             var product = await _productService.GetById(productId);
-            if (!product.IsSuccessed)
-                return BadRequest();
-            return Ok(product.ResultObj);
+            if (product == null)
+                return BadRequest("Cannot find product");
+            return Ok(product);
         }
-
         [HttpPost]
         public async Task<IActionResult> Create([FromQuery]ProductCreateRequest request)
         {
