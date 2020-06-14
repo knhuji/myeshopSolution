@@ -58,7 +58,7 @@ namespace myeshop.AdminApp.Controllers
             var result = await _productApiClient.Create(request);
             if (result.IsSuccessed)
             {
-                TempData["result"] = "Thêm mới người dùng thành công";
+                TempData["result"] = "Thêm mới sàn phẩm thành công";
                 return RedirectToAction("Index");
             }
 

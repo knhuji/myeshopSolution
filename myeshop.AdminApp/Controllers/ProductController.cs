@@ -37,6 +37,7 @@ namespace myeshop.AdminApp.Controllers
             }
             return View(data.ResultObj);
         }
+
         public async Task<IActionResult> Details(int id)
         {
             var result = await _productApiClient.GetById(id);

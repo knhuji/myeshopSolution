@@ -79,19 +79,25 @@ namespace myeshop.AdminApp.Controllers
         public async Task<IActionResult> Register(RegisterRequest request)
         {
             if (!ModelState.IsValid)
-                return View(ModelState);
+                return View();
+
             var result = await _userApiClient.Register(request);
             if (result.IsSuccessed)
-                return RedirectToAction("Index", "Home");
+            {
+               
+                return RedirectToAction("Index","Home");
+            }
+
             ModelState.AddModelError("", result.Message);
             return View(request);
+
         }
 
         [HttpPost]
         public async Task<IActionResult> Logout()
         {
             await HttpContext.SignOutAsync(CookieAuthenticationDefaults.AuthenticationScheme);
-            return RedirectToAction("Login", "User");
+            return RedirectToAction("(Index", "Home");
         }
 
         private ClaimsPrincipal ValidateToken(string jwtToken)

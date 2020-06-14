@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
+using System.ComponentModel.DataAnnotations;
 
 namespace myeShop.ViewModels.System.Users
 {
@@ -20,7 +21,7 @@ namespace myeShop.ViewModels.System.Users
        
         public string PhoneNumber { get; set; }
 
-        
+        [Required(ErrorMessage = "Username is required")]
         public string UserName { get; set; }
 
        
