@@ -82,7 +82,6 @@ namespace myeshop.Application.Catalog.Products
             _context.ProductImage.Add(product);
             await _context.SaveChangesAsync();
             return new ApiSuccessResult<int>(product.Prod_ID);
-
         }
         public async Task<ApiResult<ProductViewModel>> GetById(int productId)
         {
