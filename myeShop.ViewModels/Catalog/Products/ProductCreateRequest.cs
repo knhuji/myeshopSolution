@@ -8,6 +8,7 @@ namespace myeShop.ViewModels.Catalog.Products
 {
     public class ProductCreateRequest
     {
+        //public int Prod_ID { get; set; }
         public string Prod_Name { get; set; }
         public decimal Price { get; set; }
         public int Quantity { get; set; }

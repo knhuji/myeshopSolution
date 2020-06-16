@@ -92,7 +92,10 @@ namespace myeshop.Application.Catalog.Products
                 DateCreate = product.DateCreate,
                 Description = product.Description,
                 Prod_Name = product.Prod_Name,
-                Price = product.Price
+                Price = product.Price,
+                Quantity=product.Quantity,
+                Status=product.Status
+                
             };
             return new ApiSuccessResult<ProductViewModel>(productViewModel);
         }

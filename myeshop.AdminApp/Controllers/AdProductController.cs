@@ -55,15 +55,16 @@ namespace myeshop.AdminApp.Controllers
             if (!ModelState.IsValid)
                 return View();
 
-            var result = await _productApiClient.Create(request);
-            if (result.IsSuccessed)
+           var result= await _productApiClient.Create(request);
+            if (result)
             {
                 TempData["result"] = "Thêm mới sàn phẩm thành công";
                 return RedirectToAction("Index");
             }
 
-            ModelState.AddModelError("", result.Message);
-            return View(request);
+            // ModelState.AddModelError("", result.Message);
+            TempData["result"] = "Thêm mới sàn phẩm không thành công";
+            return View();
         }
 
         [HttpGet]
