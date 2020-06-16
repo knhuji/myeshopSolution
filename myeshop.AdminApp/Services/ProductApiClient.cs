@@ -23,7 +23,7 @@ namespace myeshop.AdminApp.Services
             var httpContent = new StringContent(json, Encoding.UTF8, "application/json");
             var client = _httpClientFactory.CreateClient();
             client.BaseAddress = new Uri("https://localhost:5001");
-            var response = await client.PostAsync("/api/Products", httpContent);
+            var response = await client.PostAsync("/api/Products/", httpContent);
             var Token = await response.Content.ReadAsStringAsync();
             if (response.IsSuccessStatusCode)
                 return JsonConvert.DeserializeObject<ApiSuccessResult<int>>(Token);
