@@ -80,6 +80,7 @@ namespace myeshop.Application.Catalog.Products
                 };
             }
             _context.ProductImage.Add(product);
+            
             await _context.SaveChangesAsync();
             return new ApiSuccessResult<int>(product.Prod_ID);
 
@@ -93,7 +94,9 @@ namespace myeshop.Application.Catalog.Products
                 DateCreate = product.DateCreate,
                 Description = product.Description,
                 Prod_Name = product.Prod_Name,
-                Price = product.Price
+                Price = product.Price,
+                Status=product.Status,
+                Quantity=product.Quantity
             };
             return new ApiSuccessResult<ProductViewModel>(productViewModel);
         }

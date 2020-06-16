@@ -62,7 +62,7 @@ namespace myeshop.AdminApp.Controllers
                 return RedirectToAction("Index");
             }
 
-            ModelState.AddModelError("", result.Message);
+            ModelState.AddModelError("", "Thêm Không thành công");
             return View(request);
         }
 

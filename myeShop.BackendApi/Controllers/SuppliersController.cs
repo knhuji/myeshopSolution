@@ -22,8 +22,8 @@ namespace myeShop.BackendApi.Controllers
         [HttpGet("paging")]
         public async Task<IActionResult> GetAllPaging([FromQuery]SuppliersPagingRequest request)
         {
-            var products = await _supplierService.GetAllPaging(request);
-            return Ok(products);
+            var suppliers = await _supplierService.GetAllPaging(request);
+            return Ok(suppliers);
         }
 
         [HttpGet("{supplierId}")]
@@ -45,7 +45,7 @@ namespace myeShop.BackendApi.Controllers
                 return BadRequest(result);
             var supplier = await _supplierService.GetById(result.ResultObj);
 
-            return CreatedAtAction(nameof(GetById), new { id = result }, supplier);
+            return CreatedAtAction(nameof(GetById), new { id = result.ResultObj }, supplier);
         }
 
         [HttpPut]
