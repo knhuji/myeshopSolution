@@ -1,4 +1,5 @@
-﻿
+﻿@using myeShop.ViewModels.Common;
+@model myeShop.ViewModels.Catalog.Products.ProductViewModel
 @{
     ViewData["Title"] = "Create";
     Layout = "~/Views/Shared/_LayoutAd.cshtml";
@@ -8,70 +9,70 @@
     <hr />
     <h3>Thêm sản phẩm</h3>
     <div class="mb-4">
-        <form class="needs-validation" novalidate>
-            <div class="form-row">
+        <form asp-action="Create" class="needs-validation" novalidate>
+            <div class="form-row form-group">
                 <div class="col-md-6 mb-3 md-form">
-                    <label for="validationproductname">Tên sản phẩm</label>
-                    <input type="text" class="form-control" id="validationproductname" placeholder="Tên sản phẩm.." required>
+                    <label asp-for="Prod_Name">Tên sản phẩm</label>
+                    <input type="text" class="form-control" asp-for="Prod_Name" placeholder="Tên sản phẩm.." required>
                     <div class="invalid-feedback">
                         Vui lòng nhập tên sản phẩm
                     </div>
                 </div>
-                <div class="col-md-6 mb-3">
-                    <label for="supplier">Nhà cung cấp</label>
-                    <select class="form-select form-control">
-                        <option value="" disabled selected>Chọn nhà cung cấp</option>
-                        <option value="1">BRAND 1</option>
-                        <option value="2">BRAND 2</option>
-                        <option value="3">BRAND 3</option>
-                        <option value="4">BRAND 4</option>
-                    </select>
-                    <div class="invalid-feedback">
-                        Vui lòng chọn nhà cung cấp
-                    </div>
-                </div>
+                @*<div class="col-md-6 mb-3">
+                        <label for="supplier">Nhà cung cấp</label>
+                        <select class="form-select form-control">
+                            <option value="" disabled selected>Chọn nhà cung cấp</option>
+                            <option value="1">BRAND 1</option>
+                            <option value="2">BRAND 2</option>
+                            <option value="3">BRAND 3</option>
+                            <option value="4">BRAND 4</option>
+                        </select>
+                        <div class="invalid-feedback">
+                            Vui lòng chọn nhà cung cấp
+                        </div>
+                    </div>*@
             </div>
             <div class="form-row">
                 <div class="col-md-4 mb-3">
-                    <label for="price">Giá tiền</label>
-                    <input type="text" class="form-control" id="price" placeholder="Giá sản phẩm..." value="" required>
+                    <label asp-for="Price">Giá tiền</label>
+                    <input type="text" class="form-control" asp-for="Price" placeholder="Giá sản phẩm..." value="" required>
                     <div class="invalid-feedback">
                         Vui lòng nhập giá tiền
                     </div>
                 </div>
                 <div class="col-md-4 mb-3">
-                    <label for="quantity">Số lượng</label>
-                    <input type="number" class="form-control" id="quantity" placeholder="Số lượng...">
+                    <label asp-for="Quantity">Số lượng</label>
+                    <input type="number" class="form-control" asp-for="Quantity" placeholder="Số lượng...">
                 </div>
-                <div class="col-md-4 mb-3">
-                    <label for="status">Trạng thái</label>
-                    <select class="form-select form-control">
-                        <option value="1">Hàng đang kinh doanh</option>
-                        <option value="2"> Hàng ngừng kinh doanh</option>
-                    </select>
-                </div>
+                @*<div class="col-md-4 mb-3">
+                        <label for="status">Trạng thái</label>
+                        <select class="form-select form-control">
+                            <option value="1">Hàng đang kinh doanh</option>
+                            <option value="2"> Hàng ngừng kinh doanh</option>
+                        </select>
+                    </div>*@
             </div>
             <div class="form-row">
                 <div class="col-md-6 mb-3 shadow-textarea">
-                    <label for="description">Mô tả</label>
-                    <textarea class="form-control" z-depth-1 data="description" rows="5" placeholder="Mô tả sản phẩm..." required></textarea>
+                    <label asp-for="Description">Mô tả</label>
+                    <textarea class="form-control" z-depth-1 asp-for="Description" rows="5" placeholder="Mô tả sản phẩm..." required></textarea>
                     <div class="invalid-feedback">
                         Vui lòng nhập mô tả sản phẩm
                     </div>
                 </div>
-                <div class="col-md-6 mb-3 mx-auto">
-                    <label for="image">Chọn hình ảnh</label>
-                    <hr />
-                    <input type="file" class="btn btn-rounded float-left" onchange="readURL(this);">
-                    <div class="input-group mb-3 px-2 py-2">
-                        <!-- Uploaded image area-->
-                        <div class="image-area mt-4" style="width: 150px"><img id="imageResult" src="#" alt="" class="img-fluid rounded shadow-sm mx-auto d-block"></div>
-                    </div>
-                </div>
+                @*<div class="col-md-6 mb-3 mx-auto">
+                        <label for="image">Chọn hình ảnh</label>
+                        <hr />
+                        <input type="file" class="btn btn-rounded float-left" onchange="readURL(this);">
+                        <div class="input-group mb-3 px-2 py-2">
+                             Uploaded image area
+                            <div class="image-area mt-4" style="width: 150px"><img id="imageResult" src="#" alt="" class="img-fluid rounded shadow-sm mx-auto d-block"></div>
+                        </div>
+                    </div>*@
             </div>
-            <button class="btn btn-primary btn-lg" type="submit">Thêm sản phẩm</button>
+            <button class="btn btn-primary btn-lg" type="submit" value="Create">Thêm sản phẩm</button>
         </form>
     </div>
 </div>
-    
+
 

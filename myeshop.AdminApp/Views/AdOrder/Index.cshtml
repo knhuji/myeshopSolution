@@ -1,0 +1,73 @@
+﻿
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/_LayoutAd.cshtml";
+}
+<div class="container-fluid">
+    <h1 class="mt-4">Xử lý đặt hàng</h1>
+    <hr />
+    <div class="card mb-4">
+        <div class="card-header"><i class="fas fa-table mr-1"></i>Danh sách đặt hàng</div>
+        <div class="card-body">
+            <div class="table-responsive">
+                <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                    <thead>
+                        <tr>
+                            <th>Mã đơn hàng</th>
+                            <th>Tên NV</th>
+                            <th>Tên KH</th>
+                            <th>Địa chỉ</th>
+                            <th>SĐT</th>
+                            <th>Thành tiền</th>
+                            <th></th>
+                        </tr>
+                    </thead>
+                    <tfoot>
+                        <tr>
+                            <th>Mã đơn hàng</th>
+                            <th>Tên NV</th>
+                            <th>Tên KH</th>
+                            <th>Địa chỉ</th>
+                            <th>SĐT</th>
+                            <th>Thành tiền</th>
+                            <th></th>
+                        </tr>
+                    </tfoot>
+                    <tbody>
+                        @*------------------Database------------------*@
+                        @*@foreach (var item in Model.Items)
+                        {
+                            <tr>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.Order_ID)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.UserId)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.ShipName)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.ShipAddress)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.ShipPhoneNumber)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.SubTotal)
+                                </td>
+                                <td>
+                                    @Html.ActionLink("Xử lý", "Handling", new { id = item.Prod_ID }) |
+                                    @Html.ActionLink("Xóa", "Delete", new { id = item.Prod_ID })
+                                </td>
+                            </tr>
+                        }*@
+                        @*------------------End data------------------*@
+                    </tbody>
+                </table>
+            </div>
+            @*@await Component.InvokeAsync("Pager", Model)*@
+        </div>
+    </div>
+</div>
+
