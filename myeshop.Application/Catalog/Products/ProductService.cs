@@ -86,6 +86,10 @@ namespace myeshop.Application.Catalog.Products
         public async Task<ApiResult<ProductViewModel>> GetById(int productId)
         {
             var product = await _context.ProductImage.FindAsync(productId);
+            if (product == null)
+            {
+                return new ApiErrorResult<ProductViewModel>("Không tìm thấy sản phẩm");
+            }
             var productViewModel = new ProductViewModel()
             {
                 Prod_ID = product.Prod_ID,
@@ -98,6 +102,8 @@ namespace myeshop.Application.Catalog.Products
                 
             };
             return new ApiSuccessResult<ProductViewModel>(productViewModel);
+
+            
         }
         public async Task<ApiResult<ProductImageViewModel>> GetImageById(int Image_ID)
         {
