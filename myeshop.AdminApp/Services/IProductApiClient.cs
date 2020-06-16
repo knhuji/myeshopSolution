@@ -11,7 +11,7 @@ namespace myeshop.AdminApp.Services
 {
     public interface IProductApiClient
     {
-        Task<ApiResult<int>> Create(ProductCreateRequest request);
+        Task<bool> Create(ProductCreateRequest request);
         Task<ApiResult<int>> Update(ProductUpdateRequest request);
         Task<ApiResult<bool>> Delete(int productId);
         Task<ApiResult<ProductViewModel>> GetById(int ProductId);

@@ -55,7 +55,7 @@ namespace myeShop.BackendApi.Controllers
                 return BadRequest(result);
             var product = await _productService.GetById(result.ResultObj);
 
-            return CreatedAtAction(nameof(GetById), new { id = result }, product);
+            return CreatedAtAction(nameof(GetById), new { id = request.Prod_ID }, product);
         }
 
         [HttpPut]

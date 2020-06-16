@@ -17,7 +17,7 @@ namespace myeshop.AdminApp.Services
         {
             _httpClientFactory = httpClientFactory;
         }
-        public async Task<ApiResult<int>> Create(ProductCreateRequest request)
+        public async Task<bool> Create(ProductCreateRequest request)
         {
             var json = JsonConvert.SerializeObject(request);
             var httpContent = new StringContent(json, Encoding.UTF8, "application/json");
@@ -25,10 +25,10 @@ namespace myeshop.AdminApp.Services
             client.BaseAddress = new Uri("https://localhost:5001");
             var response = await client.PostAsync("/api/Products", httpContent);
             var Token = await response.Content.ReadAsStringAsync();
-            if (response.IsSuccessStatusCode)
-                return JsonConvert.DeserializeObject<ApiSuccessResult<int>>(Token);
+          //  if (response.IsSuccessStatusCode)
+                return response.IsSuccessStatusCode;
 
-            return JsonConvert.DeserializeObject<ApiErrorResult<int>>(Token);
+           // return JsonConvert.DeserializeObject<ApiErrorResult<bool>>(Token);
         }
 
         public async Task<ApiResult<int>> Update(ProductUpdateRequest request)
