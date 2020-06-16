@@ -1,0 +1,88 @@
+﻿
+@{
+    ViewData["Title"] = "Detail";
+    Layout = "~/Views/Shared/_LayoutAd.cshtml";
+}
+<div class="container-fluid">
+    <h1 class="mt-4">Chi tiết hóa đơn</h1>
+        <hr />
+    <div class="row mb-4">
+        <div class="row col-md-3 ">
+            <p>Nhân viên: </p>
+            <p>Như</p>
+        </div>
+        <div class="row col-md-3 ">
+            <p>Khách hàng: </p>
+            <p>Thị Híp</p>
+        </div>
+        <div class="row col-md-3 ">
+            <p>Ngày tạo: </p>
+            <p>30/4/2020</p>
+        </div>
+        <div class="row col-md-3 ">
+            <p>Tổng tiền: </p>
+            <p>5000000</p>
+        </div>
+    </div>
+
+    <div class="card mb-4">
+        <div class="card-header"><i class="fas fa-table mr-1"></i>Danh sách sản phẩm</div>
+        <div class="card-body">
+            <table width="100%" cellspacing="0">
+                <thead>
+                    <tr>
+                        <th>Mã SP</th>
+                        <th>Tên sản phẩm</th>
+                        <th>Giá</th>
+                        <th>Số lượng</th>
+                        <th>Đơn giá</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>1001</td>
+                        <td>Áo số 1</td>
+                        <td>100000</td>
+                        <td>2</td>
+                        <td>200000</td>
+                    </tr>
+                    <tr>
+                        <td>1004</td>
+                        <td>Áo số 4</td>
+                        <td>150000</td>
+                        <td>2</td>
+                        <td>300000</td>
+                    </tr>
+                    @*------------------Database------------------*@
+                    @*@foreach (var item in Model.Items)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Bill_ID)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.UserId)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ShipName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.DateCreate)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.SubTotal)
+            </td>
+            <td>
+                @Html.ActionLink("Chi tiể", "Detail", new { id = item.Bill_ID })
+            </td>
+        </tr>
+    }*@
+                    @*------------------End data------------------*@
+                </tbody>
+            </table>
+            @*@await Component.InvokeAsync("Pager", Model)*@
+        </div>
+    </div>
+</div>
+
+
