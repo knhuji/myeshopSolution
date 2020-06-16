@@ -118,18 +118,14 @@ namespace myeshop.AdminApp.Controllers
         {
             if (!ModelState.IsValid)
                 return View();
-
             var result = await _productApiClient.Update(request);
             if (result.IsSuccessed)
             {
-                TempData["result"] = "Cập nhật người dùng thành công";
+                TempData["result"] = "Cập nhật sản phẩm thành công";
                 return RedirectToAction("Index");
             }
-
             ModelState.AddModelError("", result.Message);
             return View(request);
         }
-
-
     }
 }

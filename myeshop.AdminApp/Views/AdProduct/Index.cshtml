@@ -6,10 +6,8 @@
 }
 <div class="container-fluid">
     <h1 class="mt-4">Quản lý sản phẩm</h1>
-    <ol class="breadcrumb mb-4">
-        <li class="breadcrumb-item"><a href="index.html">Dashboard</a></li>
-        <li class="breadcrumb-item active">Tables</li>
-    </ol>
+    <a class="btn btn-primary" asp-area="" asp-controller="AdProduct" asp-action="Create">Thêm sản phẩm</a>
+    <hr />
     <div class="card mb-4">
         <div class="card-header"><i class="fas fa-table mr-1"></i>Danh sách sản phẩm</div>
         <div class="card-body">
@@ -25,7 +23,7 @@
                             <th>Mô tả</th>
                             <th>Ngày nhập</th>
                             <th>Trạng thái</th>
-                            @*<th></th>*@
+                            <th></th>
                         </tr>
                     </thead>
                     <tfoot>
@@ -34,10 +32,10 @@
                             <th>Tên sản phẩm</th>
                             <th>Giá</th>
                             <th>Số lượng</th>
-
+                            <th>Mô tả</th>
                             <th>Ngày nhập</th>
                             <th>Trạng thái</th>
-                            @*<th></th>*@
+                            <th></th>
                         </tr>
                     </tfoot>
                     <tbody>
@@ -71,9 +69,7 @@
                                 </td>
                                 <td>
                                     @Html.ActionLink("Sửa", "Edit", new { id = item.Prod_ID }) |
-                                    @Html.ActionLink("Xem", "Details", new { id = item.Prod_ID }) |
-                                    @Html.ActionLink("Xóa", "Delete", new { id = item.Prod_ID }) |
-                                    @Html.ActionLink("Gán quyền", "RoleAssign", new { id = item.Prod_ID })
+                                    @Html.ActionLink("Xóa", "Delete", new { id = item.Prod_ID }) 
                                 </td>
                             </tr>
                         }
