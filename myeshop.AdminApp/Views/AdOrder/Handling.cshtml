@@ -1,0 +1,55 @@
+﻿
+@{
+    ViewData["Title"] = "Handling";
+    Layout = "~/Views/Shared/_LayoutAd.cshtml";
+}
+    <div class="container-fluid">
+        <h1 class="mt-4">Xử lý đặt hàng</h1>
+        <h4>Mã đơn hàng</h4>
+        <hr />
+        <div class="row mb-4">
+            <div class="col-md-9">
+                <div class="row">
+                    <div class="col-md-1"><span>&nbsp;</span></div>
+                    <div class="col-md-5"><p>Áo thun cổ cao</p></div>
+                    <div class="col-md-2">300000</div>
+                    <div class="col-md-2"><input type="text" id="quantity" class="form-control"></div>
+                    <div class="col-md-2">600000</div>
+                </div>
+            </div>
+            <div class="card col-md-3">
+                <br />
+                <div class="row">
+                    <div class="col-md-9">
+                        <input type="text" id="Customer" class="form-control">
+                    </div>
+                    <div class="col-md-3">
+                        <button type="button" class="btn btn-primary">
+                            <i class="icon-add" aria-hidden="true"></i>
+                        </button>
+                    </div>
+                </div>
+                <hr />
+                <div>
+                    <input type="text" placeholder="Ghi chú" class="form-control"/>
+                </div>
+                <br/>
+                <div class="row">
+                    <div class="col-md-4"><p>Tổng tiền:</p></div>
+                    <div class="col-md-8"><p>600000</p></div>
+                </div>
+                <div class="row">
+                    <div class="col-md-4"><p>Phí ship:</p></div>
+                    <div class="col-md-8"><p>20000</p></div>
+                </div>
+                <div class="row">
+                    <div class="col-md-4"><p>Thành tiền:</p></div>
+                    <div class="col-md-8"><p>620000</p></div>
+                </div>
+                    <button class="btn btn-primary btn-lg" type="submit" value="Create">Hoàn thành</button>
+                <br />  
+            </div>
+        </div>
+    </div>
+
+
