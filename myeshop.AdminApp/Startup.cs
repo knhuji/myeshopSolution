@@ -52,6 +52,7 @@ namespace myeshop.AdminApp
             services.AddTransient<IUserApiClient, UserApiClient>();
             services.AddTransient<IProductApiClient, ProductApiClient>();
             services.AddTransient<ISupplierApiClient, SupplierApiClient>();
+            services.AddTransient<IRoleApiClient, RoleApiClient>();
 
             IMvcBuilder builder = services.AddRazorPages();
             var environment = Environment.GetEnvironmentVariable("ASPNETCORE_ENVIRONMENT");

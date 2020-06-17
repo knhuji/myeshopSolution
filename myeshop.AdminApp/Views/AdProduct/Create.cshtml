@@ -1,5 +1,5 @@
-﻿@using myeShop.ViewModels.Common;
-@model myeShop.ViewModels.Catalog.Products.ProductViewModel
+﻿
+@model myeShop.ViewModels.Catalog.Products.ProductCreateRequest
 @{
     ViewData["Title"] = "Create";
     Layout = "~/Views/Shared/_LayoutAd.cshtml";
@@ -9,11 +9,11 @@
     <hr />
     <h3>Thêm sản phẩm</h3>
     <div class="mb-4">
-        <form asp-action="Create" class="needs-validation" novalidate>
+        <form asp-action="Create" asp-controller="AdProduct" class="needs-validation" method="POST" novalidate >
             <div class="form-row form-group">
                 <div class="col-md-6 mb-3 md-form">
                     <label asp-for="Prod_Name">Tên sản phẩm</label>
-                    <input type="text" class="form-control" asp-for="Prod_Name" placeholder="Tên sản phẩm.." required>
+                    <input asp-for="Prod_Name" type="text" class="form-control"  placeholder="Tên sản phẩm.." required>
                     <div class="invalid-feedback">
                         Vui lòng nhập tên sản phẩm
                     </div>
@@ -35,14 +35,14 @@
             <div class="form-row">
                 <div class="col-md-4 mb-3">
                     <label asp-for="Price">Giá tiền</label>
-                    <input type="text" class="form-control" asp-for="Price" placeholder="Giá sản phẩm..." value="" required>
+                    <input  asp-for="Price" type="text" class="form-control"  placeholder="Giá sản phẩm..." value="" required>
                     <div class="invalid-feedback">
                         Vui lòng nhập giá tiền
                     </div>
                 </div>
                 <div class="col-md-4 mb-3">
                     <label asp-for="Quantity">Số lượng</label>
-                    <input type="number" class="form-control" asp-for="Quantity" placeholder="Số lượng...">
+                    <input asp-for="Quantity" type="number" class="form-control"  placeholder="Số lượng..." required>
                 </div>
                 @*<div class="col-md-4 mb-3">
                         <label for="status">Trạng thái</label>
@@ -55,7 +55,7 @@
             <div class="form-row">
                 <div class="col-md-6 mb-3 shadow-textarea">
                     <label asp-for="Description">Mô tả</label>
-                    <textarea class="form-control" z-depth-1 asp-for="Description" rows="5" placeholder="Mô tả sản phẩm..." required></textarea>
+                    <textarea asp-for="Description" class="form-control" z-depth-1  rows="5" placeholder="Mô tả sản phẩm..." required></textarea>
                     <div class="invalid-feedback">
                         Vui lòng nhập mô tả sản phẩm
                     </div>
