@@ -24,6 +24,7 @@ namespace myeshop.AdminApp.Services
             var client = _httpClientFactory.CreateClient();
 
             client.BaseAddress = new Uri("https://localhost:5001");
+
             var response = await client.PostAsync("/api/Products", httpContent);
             var body = await response.Content.ReadAsStringAsync();
             
@@ -34,6 +35,7 @@ namespace myeshop.AdminApp.Services
                 return new ApiSuccessResult<int>(t);
             }
             return new ApiErrorResult<int>(body);
+
         }
 
         public async Task<ApiResult<int>> Update(ProductUpdateRequest request)
