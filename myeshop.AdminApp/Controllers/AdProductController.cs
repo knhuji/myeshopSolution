@@ -56,7 +56,7 @@ namespace myeshop.AdminApp.Controllers
                 return View();
 
             var result = await _productApiClient.Create(request);
-            if (result.IsSuccessed)
+            if (!result.IsSuccessed)
             {
                 // ModelState.AddModelError("", result.Message);
                 TempData["result"] = "Thêm mới sản phẩm không thành công";
