@@ -27,6 +27,7 @@ using Microsoft.CodeAnalysis.Options;
 using myeshop.Application.Catalog.Suppliers;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.IdentityModel.Tokens;
+using myeshop.Application.System.Roles;
 
 namespace myeShop.BackendApi
 {
@@ -52,6 +53,9 @@ namespace myeShop.BackendApi
                 .AddFluentValidation(fv => fv.RegisterValidatorsFromAssemblyContaining<LoginRequestValidator>());
 
             services.AddControllersWithViews();
+
+
+            
 
             services.AddSwaggerGen(c =>
             {
@@ -138,6 +142,7 @@ namespace myeShop.BackendApi
             services.AddTransient<IProductService, ProductService>();
             services.AddTransient<ISupplierService, SupplierService>();
             services.AddTransient<ICartService, CartService>();
+            services.AddTransient<IRoleService, RoleService>();
             //services.AddTransient < IValidator<LoginRequest>, LoginRequestValidator >();
             //services.AddTransient<IValidator<RegisterRequest>, RegisterRequestValidator>();
 
@@ -160,7 +165,7 @@ namespace myeShop.BackendApi
             }
             app.UseHttpsRedirection();
             app.UseStaticFiles();
-
+            app.UseAuthentication();
             app.UseRouting();
 
             app.UseAuthorization();
