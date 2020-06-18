@@ -8580,6 +8580,7 @@ textarea.form-control {
   background-repeat: no-repeat;
   background-position: center center;
   height: 250px;
+  width: 10%;
   position: relative;
   display: block; }
 
@@ -8603,7 +8604,7 @@ textarea.form-control {
     .blog-entry .text .heading a {
       color: #000000; }
       .blog-entry .text .heading a:hover, .blog-entry .text .heading a:focus, .blog-entry .text .heading a:active {
-        color: #f1b8c4; }
+        color: #000; }
   .blog-entry .text .meta-chat {
     color: #b3b3b3; }
   .blog-entry .text .read {
