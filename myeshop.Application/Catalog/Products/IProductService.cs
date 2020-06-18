@@ -13,7 +13,7 @@ namespace myeshop.Application.Catalog.Products
 {
     public interface IProductService
     {
-        Task<ApiResult<int>> Create(ProductCreateRequest request);
+        Task<int> Create(ProductCreateRequest request);
         Task<ApiResult<int>> Update(ProductUpdateRequest request);
         Task<ApiResult<bool>> Delete(int productId);
         Task<ApiResult<ProductViewModel>> GetById(int ProductId);

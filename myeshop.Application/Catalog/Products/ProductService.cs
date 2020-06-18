@@ -53,7 +53,7 @@ namespace myeshop.Application.Catalog.Products
             return new ApiSuccessResult<int>(productImage.Prod_ID);
         }
 
-        public async Task<ApiResult<int>> Create(ProductCreateRequest request)
+        public async Task<int> Create(ProductCreateRequest request)
         {
             var product = new Product()
             {
@@ -64,25 +64,25 @@ namespace myeshop.Application.Catalog.Products
                 Description = request.Description
             };
             //Save image
-            if (request.ThumbnailImage != null)
-            {
-                product.ProductImages = new List<ProductImage>()
-                {
-                    new ProductImage()
-                    {
-                        Caption = "Thumbnail image",
-                        DateCreated = DateTime.Now,
-                        FileSize = request.ThumbnailImage.Length,
-                        ImagePath = await this.SaveFile(request.ThumbnailImage),
-                        IsDefault = true,
-                        SortOrder = 1
-                    }
-                };
-            }
+            //if (request.ThumbnailImage != null)
+            //{
+            //    product.ProductImages = new List<ProductImage>()
+            //    {
+            //        new ProductImage()
+            //        {
+            //            Caption = "Thumbnail image",
+            //            DateCreated = DateTime.Now,
+            //            FileSize = request.ThumbnailImage.Length,
+            //            ImagePath = await this.SaveFile(request.ThumbnailImage),
+            //            IsDefault = true,
+            //            SortOrder = 1
+            //        }
+            //    };
+            //}
             _context.ProductImage.Add(product);
             
             await _context.SaveChangesAsync();
-            return new ApiSuccessResult<int>(product.Prod_ID);
+            return product.Prod_ID;
         }
         public async Task<ApiResult<ProductViewModel>> GetById(int productId)
         {

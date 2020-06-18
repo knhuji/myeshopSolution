@@ -16,7 +16,8 @@ namespace myeShop.ViewModels.Catalog.Carts
 
         public string Id { get; set; }
 
-        public List<CartItemViewModel> Items { get; set; } = new List<CartItemViewModel>();
+        public IEnumerable<CartItemViewModel> Items { get; set; } = new List<CartItemViewModel>();
+
         public decimal Total()
         {
             return Math.Round(Items.Sum(x => x.Price * x.Quantity), 2);
