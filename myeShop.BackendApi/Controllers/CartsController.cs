@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using EasyCaching.Core;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using myeshop.Application.Catalog.Carts;
@@ -9,14 +10,18 @@ using myeShop.ViewModels.Catalog.Carts;
 
 namespace myeShop.BackendApi.Controllers
 {
-    [Route("api/[controller]")]
+    [Route("api/[controller]/Redis")]
     [ApiController]
+   
     public class CartsController : ControllerBase
     {
         private readonly ICartService _cartService;
-        public CartsController(ICartService cartService)
+       
+
+        public CartsController(ICartService cartService )
         {
             _cartService = cartService;
+           
         }
         [HttpGet("{id}")]
         public async Task<IActionResult> Get(string id)
@@ -47,4 +52,5 @@ namespace myeShop.BackendApi.Controllers
             return Ok();
         }
     }
+    
 }

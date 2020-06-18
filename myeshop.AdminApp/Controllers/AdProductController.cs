@@ -62,8 +62,10 @@ namespace myeshop.AdminApp.Controllers
                 TempData["result"] = "Thêm mới sản phẩm không thành công";
                 return View();
             }
+
             TempData["result"] = "Thêm mới sản phẩm thành công";
             return RedirectToAction("Index");
+
         }
 
         [HttpGet]

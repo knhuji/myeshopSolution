@@ -1,4 +1,5 @@
-﻿<!DOCTYPE html>
+﻿@inject myeshop.AdminApp.Services.IBuyerService buyerService
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <title>@ViewData["Title"] - myeshop</title>
@@ -50,7 +51,7 @@
                     <li class="nav-item">
                         <a class="nav-link text-dark" asp-area="" asp-controller="#" asp-action="Index">BEST SELLERS</a>
                     </li>
-                    <li class="nav-item cta cta-colored"><a href="cart.html" class="nav-link"><span class="icon-shopping_cart"></span>[0]</a></li>
+                    <li class="nav-item cta cta-colored"><partial name="_LoginPartial" /></li>
                 </ul>
             </div>
         </div>
