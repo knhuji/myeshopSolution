@@ -7,6 +7,7 @@ using System.Linq;
 using System.Net.Http;
 using System.Text;
 using System.Threading.Tasks;
+using System.Web.Helpers;
 
 namespace myeshop.AdminApp.Services
 {
@@ -22,19 +23,14 @@ namespace myeshop.AdminApp.Services
             var json = JsonConvert.SerializeObject(request);
             var httpContent = new StringContent(json, Encoding.UTF8, "application/json");
             var client = _httpClientFactory.CreateClient();
-
             client.BaseAddress = new Uri("https://localhost:5001");
+            var response = await client.PostAsync("/api/Products/", httpContent);
+            var Token = await response.Content.ReadAsStringAsync();
 
-            var response = await client.PostAsync("/api/Products", httpContent);
-            var body = await response.Content.ReadAsStringAsync();
+           
+              //  int t = (int)JsonConvert.DeserializeObject(Token, typeof(int));
+                return new ApiSuccessResult<int>();
             
-            if (response.IsSuccessStatusCode)
-            {
-                
-                int t = (int)JsonConvert.DeserializeObject(body, typeof(int));
-                return new ApiSuccessResult<int>(t);
-            }
-            return new ApiErrorResult<int>(body);
 
         }
 

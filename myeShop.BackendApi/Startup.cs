@@ -143,6 +143,7 @@ namespace myeShop.BackendApi
             services.AddTransient<ISupplierService, SupplierService>();
             services.AddTransient<ICartService, CartService>();
             services.AddTransient<IRoleService, RoleService>();
+
             //services.AddTransient < IValidator<LoginRequest>, LoginRequestValidator >();
             //services.AddTransient<IValidator<RegisterRequest>, RegisterRequestValidator>();
 

@@ -1,0 +1,7 @@
+﻿
+@model myeshop.AdminApp.ViewModel.CartComponentViewModel;
+
+
+<a href="cart.html" class="nav-link @Model.Disabled" asp-action="Index" asp-controller="Cart">
+    <span class="icon-shopping_cart"></span> @Model.ItemsInCart
+</a>
