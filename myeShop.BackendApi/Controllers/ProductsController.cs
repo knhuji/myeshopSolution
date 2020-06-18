@@ -46,8 +46,9 @@ namespace myeShop.BackendApi.Controllers
             return Ok(product);
         }
         [HttpPost]
+
         public async Task<IActionResult> Create(ProductCreateRequest request)
-        {
+       {
             if (!ModelState.IsValid)
                 return BadRequest(ModelState);
             var result = await _productService.Create(request);

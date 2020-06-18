@@ -1,4 +1,5 @@
-﻿using Microsoft.EntityFrameworkCore.Storage;
+﻿using EasyCaching.Core;
+using Microsoft.EntityFrameworkCore.Storage;
 using Microsoft.Extensions.Caching.Distributed;
 using Microsoft.Extensions.Caching.Memory;
 using myeShop.ViewModels.Catalog.Carts;
@@ -17,16 +18,26 @@ namespace myeshop.Application.Catalog.Carts
     public class CartService : ICartService
     {
 
-        private readonly IDistributedCache _distributedCache;
-        public CartService(IDistributedCache distributedCache)
+        
+        private IEasyCachingProvider cachingProvider;
+        private IEasyCachingProviderFactory cachingProviderFactory;
+
+        public CartService( IEasyCachingProviderFactory cachingProviderFactory)
         {
-            
-            _distributedCache = distributedCache;
+           
+            this.cachingProviderFactory = cachingProviderFactory;
+            cachingProvider = this.cachingProviderFactory.GetCachingProvider("redis1");
         }
+        //private readonly IDistributedCache _distributedCache;
+        //public CartService(IDistributedCache distributedCache)
+        //{
+            
+        //    _distributedCache = distributedCache;
+        //}
 
         public async Task<ApiResult<Cart>> GetById(string key)
         {
-            var data = await _distributedCache.GetStringAsync(key);
+            var data = await cachingProvider.GetAsync<String>(key);
             if (data != null)
                 return JsonConvert.DeserializeObject<ApiSuccessResult<Cart>>(data.ToString());
             return JsonConvert.DeserializeObject<ApiErrorResult<Cart>>(data.ToString());
@@ -35,11 +46,11 @@ namespace myeshop.Application.Catalog.Carts
         public async Task<ApiResult<Cart>> Updatecart(String key, Cart request)
         {
             var data = JsonConvert.SerializeObject(request);
-            var result = Encoding.UTF8.GetBytes(data);
-            var option = new DistributedCacheEntryOptions()
-                .SetSlidingExpiration(TimeSpan.FromDays(5))
-                .SetAbsoluteExpiration(DateTime.Now.AddDays(6));
-            await _distributedCache.SetAsync(key, result, option, default);
+           // var result = Encoding.UTF8.GetBytes(data);
+            //var option = new DistributedCacheEntryOptions()
+            //    .SetSlidingExpiration(TimeSpan.FromDays(5))
+            //    .SetAbsoluteExpiration(DateTime.Now.AddDays(6));
+            await cachingProvider.SetAsync(key, data, TimeSpan.FromDays(100));
 
             return await GetById(key);
 
@@ -47,7 +58,7 @@ namespace myeshop.Application.Catalog.Carts
         public async Task<ApiResult<bool>> DeleteCart(string key)
         {
 
-            await _distributedCache.RemoveAsync(key);
+            await cachingProvider.RemoveAsync(key);
             return new ApiSuccessResult<bool>();
         }
     }
