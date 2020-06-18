@@ -30,22 +30,22 @@ namespace myeShop.BackendApi.Controllers
         public async Task<IActionResult> GetById(int supplierId)
         {
             var supplier = await _supplierService.GetById(supplierId);
-            if (!supplier.IsSuccessed)
-                return BadRequest();
-            return Ok(supplier.ResultObj);
+            if (supplier == null)
+                return BadRequest("Cannot find supplier");
+            return Ok(supplier);
         }
 
         [HttpPost]
-        public async Task<IActionResult> Create([FromQuery]SupplierCreateRequest request)
+        public async Task<IActionResult> Create(SupplierCreateRequest request)
         {
             if (!ModelState.IsValid)
                 return BadRequest(ModelState);
             var result = await _supplierService.Create(request);
-            if (!result.IsSuccessed)
-                return BadRequest(result);
-            var supplier = await _supplierService.GetById(result.ResultObj);
-
-            return CreatedAtAction(nameof(GetById), new { id = result.ResultObj }, supplier);
+            if (result == 0)
+                return BadRequest();
+            var supplier = await _supplierService.GetById(result);
+            
+            return CreatedAtAction(nameof(GetById), new { id = result }, supplier);
         }
 
         [HttpPut]

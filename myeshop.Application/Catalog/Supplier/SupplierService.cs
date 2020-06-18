@@ -24,21 +24,20 @@ namespace myeshop.Application.Catalog.Suppliers
             _context = context;
             _storageService = storageService;
         }
-        public async Task<ApiResult<int>> Create(SupplierCreateRequest request)
+        public async Task<int> Create(SupplierCreateRequest request)
         {
             var supplier = new Supplier()
             {
                 Supplier_Name = request.Supplier_Name,
                 Gmail = request.Gmail,
                 Address = request.Address,
-                
                 Phone = request.Phone
             };
             //Save image
             
             _context.Suppliers.Add(supplier);
             await _context.SaveChangesAsync();
-            return new ApiSuccessResult<int>(supplier.Supplier_ID);
+            return supplier.Supplier_ID;
         }
 
         public async Task<ApiResult<bool>> Delete(int supplierId)
@@ -96,7 +95,10 @@ namespace myeshop.Application.Catalog.Suppliers
         public async Task<ApiResult<SupplierViewModel>> GetById(int supplierId)
         {
             var supplier = await _context.Suppliers.FindAsync(supplierId);
-
+            if(supplier == null)
+            {
+                return new ApiErrorResult<SupplierViewModel>("Không tìm thấy thương hiệu");
+            }
 
             var supplierViewModel = new SupplierViewModel()
             {
@@ -104,12 +106,10 @@ namespace myeshop.Application.Catalog.Suppliers
                 Supplier_Name = supplier.Supplier_Name,
                 Gmail = supplier.Gmail,
                 Address = supplier.Address,
-
                 Phone = supplier.Phone
             };
             return new ApiSuccessResult<SupplierViewModel>(supplierViewModel);
         }
-
         public async Task<ApiResult<PagedResult<SupplierViewModel>>> GetAllPaging(SuppliersPagingRequest request)
         {
             var query = from s in _context.Suppliers

@@ -24,16 +24,14 @@ namespace myeshop.AdminApp.Services
             var httpContent = new StringContent(json, Encoding.UTF8, "application/json");
             var client = _httpClientFactory.CreateClient();
             client.BaseAddress = new Uri("https://localhost:5001");
-            var response = await client.PostAsync("/api/Suppliers", httpContent);
+            var response = await client.PostAsync("/api/Suppliers/", httpContent);
             var Token = await response.Content.ReadAsStringAsync();
-            if( response.IsSuccessStatusCode)
-            {
-                int t = (int)JsonConvert.DeserializeObject(Token, typeof(int));
-                return new ApiSuccessResult<int>(t);
-            }    
-           
-
-            return new ApiErrorResult<int>(Token);
+            //if( response.IsSuccessStatusCode)
+            //{
+            //    int t = (int)JsonConvert.DeserializeObject(Token, typeof(int));
+            //    return new ApiSuccessResult<int>(t);
+            //}    
+            return new ApiSuccessResult<int>();
         }
 
         public async Task<ApiResult<int>> Update(SupplierUpdateRequest request)
@@ -42,7 +40,7 @@ namespace myeshop.AdminApp.Services
             var httpContent = new StringContent(json, Encoding.UTF8, "application/json");
             var client = _httpClientFactory.CreateClient();
             client.BaseAddress = new Uri("https://localhost:5001");
-            var response = await client.PutAsync("/api/Products/", httpContent);
+            var response = await client.PutAsync("/api/Suppliers/", httpContent);
             var Token = await response.Content.ReadAsStringAsync();
             if (response.IsSuccessStatusCode)
             {
@@ -73,7 +71,7 @@ namespace myeshop.AdminApp.Services
             var client = _httpClientFactory.CreateClient();
             client.BaseAddress = new Uri("https://localhost:5001");
 
-            var response = await client.GetAsync($"/api/Products/{SupplierId}");
+            var response = await client.GetAsync($"/api/Suppliers/{SupplierId}");
             var body = await response.Content.ReadAsStringAsync();
             if (response.IsSuccessStatusCode)
                 return JsonConvert.DeserializeObject<ApiSuccessResult<SupplierViewModel>>(body);

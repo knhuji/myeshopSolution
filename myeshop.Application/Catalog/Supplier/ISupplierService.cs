@@ -9,10 +9,10 @@ namespace myeshop.Application.Catalog.Suppliers
 {
     public interface ISupplierService
     {
-        Task<ApiResult<int>> Create(SupplierCreateRequest request);
+        Task<int> Create(SupplierCreateRequest request);
         Task<ApiResult<int>> Update(SupplierUpdateRequest request);
         Task<ApiResult<bool>> Delete(int supplierId);
-        Task<ApiResult<SupplierViewModel>> GetById(int supplierId);
+        Task<ApiResult<SupplierViewModel>> GetById(int SupplierId);
         Task<ApiResult<PagedResult<SupplierViewModel>>> GetAllPaging(SuppliersPagingRequest request);
     }
 }
