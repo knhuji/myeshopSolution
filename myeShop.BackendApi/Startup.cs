@@ -28,8 +28,14 @@ using myeshop.Application.Catalog.Carts;
 using StackExchange.Redis;
 using Microsoft.CodeAnalysis.Options;
 using myeshop.Application.Catalog.Suppliers;
+
 using Microsoft.AspNetCore.Mvc;
 using System.Text;
+
+using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.IdentityModel.Tokens;
+using myeshop.Application.System.Roles;
+
 
 namespace myeShop.BackendApi
 {
@@ -58,6 +64,9 @@ namespace myeShop.BackendApi
                 .AddFluentValidation(fv => fv.RegisterValidatorsFromAssemblyContaining<LoginRequestValidator>());
 
             services.AddControllersWithViews();
+
+
+            
 
             services.AddSwaggerGen(c =>
             {
@@ -89,6 +98,33 @@ namespace myeShop.BackendApi
                         new List<string>()
                       }
                     });
+
+
+                string issuer = Configuration.GetValue<string>("Tokens:Issuer");
+                string signingKey = Configuration.GetValue<string>("Tokens:Key");
+                byte[] signingKeyBytes = System.Text.Encoding.UTF8.GetBytes(signingKey);
+
+                services.AddAuthentication(opt =>
+                {
+                    opt.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
+                    opt.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
+                })
+                .AddJwtBearer(options =>
+                {
+                    options.RequireHttpsMetadata = false;
+                    options.SaveToken = true;
+                    options.TokenValidationParameters = new TokenValidationParameters()
+                    {
+                        ValidateIssuer = true,
+                        ValidIssuer = issuer,
+                        ValidateAudience = true,
+                        ValidAudience = issuer,
+                        ValidateLifetime = true,
+                        ValidateIssuerSigningKey = true,
+                        ClockSkew = System.TimeSpan.Zero,
+                        IssuerSigningKey = new SymmetricSecurityKey(signingKeyBytes)
+                    };
+                });
             });
             //services.AddMemoryCache();
             //services.AddStackExchangeRedisCache(Options =>
@@ -139,6 +175,7 @@ namespace myeShop.BackendApi
             services.AddTransient<IProductService, ProductService>();
             services.AddTransient<ISupplierService, SupplierService>();
             services.AddTransient<ICartService, CartService>();
+            services.AddTransient<IRoleService, RoleService>();
             //services.AddTransient < IValidator<LoginRequest>, LoginRequestValidator >();
             //services.AddTransient<IValidator<RegisterRequest>, RegisterRequestValidator>();
 
@@ -164,7 +201,7 @@ namespace myeShop.BackendApi
             }
             app.UseHttpsRedirection();
             app.UseStaticFiles();
-
+            app.UseAuthentication();
             app.UseRouting();
 
             app.UseAuthorization();

@@ -22,13 +22,20 @@ namespace myeshop.AdminApp.Services
             var json = JsonConvert.SerializeObject(request);
             var httpContent = new StringContent(json, Encoding.UTF8, "application/json");
             var client = _httpClientFactory.CreateClient();
-            client.BaseAddress = new Uri("https://localhost:5001");
-            var response = await client.PostAsync("/api/Products", httpContent);
-            var Token = await response.Content.ReadAsStringAsync();
-            if (response.IsSuccessStatusCode)
-                return JsonConvert.DeserializeObject<ApiSuccessResult<int>>(Token);
 
-            return JsonConvert.DeserializeObject<ApiErrorResult<int>>(Token);
+            client.BaseAddress = new Uri("https://localhost:5001");
+
+            var response = await client.PostAsync("/api/Products", httpContent);
+            var body = await response.Content.ReadAsStringAsync();
+            
+            if (response.IsSuccessStatusCode)
+            {
+                
+                int t = (int)JsonConvert.DeserializeObject(body, typeof(int));
+                return new ApiSuccessResult<int>(t);
+            }
+            return new ApiErrorResult<int>(body);
+
         }
 
         public async Task<ApiResult<int>> Update(ProductUpdateRequest request)
@@ -39,10 +46,15 @@ namespace myeshop.AdminApp.Services
             client.BaseAddress = new Uri("https://localhost:5001");
             var response = await client.PutAsync("/api/Products/", httpContent);
             var Token = await response.Content.ReadAsStringAsync();
+             
             if (response.IsSuccessStatusCode)
-                return JsonConvert.DeserializeObject<ApiSuccessResult<int>>(Token);
+            {
+                int t = (int)JsonConvert.DeserializeObject(Token, typeof(int));
+                return new ApiSuccessResult<int>(t);
+            }    
+                
 
-            return JsonConvert.DeserializeObject<ApiErrorResult<int>>(Token);
+            return new ApiErrorResult<int>(Token);
         }
         public async Task<ApiResult<bool>> Delete(int productId)
         {

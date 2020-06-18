@@ -63,7 +63,7 @@ namespace myeshop.AdminApp.Controllers
             }
 
             ModelState.AddModelError("", result.Message);
-            return View(request);
+            return View();
         }
 
         [HttpGet]

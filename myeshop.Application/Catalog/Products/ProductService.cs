@@ -83,11 +83,14 @@ namespace myeshop.Application.Catalog.Products
             
             await _context.SaveChangesAsync();
             return new ApiSuccessResult<int>(product.Prod_ID);
-
         }
         public async Task<ApiResult<ProductViewModel>> GetById(int productId)
         {
             var product = await _context.ProductImage.FindAsync(productId);
+            if (product == null)
+            {
+                return new ApiErrorResult<ProductViewModel>("Không tìm thấy sản phẩm");
+            }
             var productViewModel = new ProductViewModel()
             {
                 Prod_ID = product.Prod_ID,
@@ -95,10 +98,14 @@ namespace myeshop.Application.Catalog.Products
                 Description = product.Description,
                 Prod_Name = product.Prod_Name,
                 Price = product.Price,
+
                 Status=product.Status,
                 Quantity=product.Quantity
+
             };
             return new ApiSuccessResult<ProductViewModel>(productViewModel);
+
+            
         }
         public async Task<ApiResult<ProductImageViewModel>> GetImageById(int Image_ID)
         {

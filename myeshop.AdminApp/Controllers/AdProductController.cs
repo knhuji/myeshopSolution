@@ -56,14 +56,16 @@ namespace myeshop.AdminApp.Controllers
                 return View();
 
             var result = await _productApiClient.Create(request);
-            if (result.IsSuccessed)
+            if (!result.IsSuccessed)
             {
-                TempData["result"] = "Thêm mới sàn phẩm thành công";
-                return RedirectToAction("Index");
+                // ModelState.AddModelError("", result.Message);
+                TempData["result"] = "Thêm mới sản phẩm không thành công";
+                return View();
             }
 
-            ModelState.AddModelError("", "Thêm Không thành công");
-            return View(request);
+            TempData["result"] = "Thêm mới sản phẩm thành công";
+            return RedirectToAction("Index");
+
         }
 
         [HttpGet]
@@ -118,18 +120,14 @@ namespace myeshop.AdminApp.Controllers
         {
             if (!ModelState.IsValid)
                 return View();
-
             var result = await _productApiClient.Update(request);
             if (result.IsSuccessed)
             {
-                TempData["result"] = "Cập nhật người dùng thành công";
+                TempData["result"] = "Cập nhật sản phẩm thành công";
                 return RedirectToAction("Index");
             }
-
-            ModelState.AddModelError("", result.Message);
-            return View(request);
+            ModelState.AddModelError("",result.Message);
+            return View();
         }
-
-
     }
 }
