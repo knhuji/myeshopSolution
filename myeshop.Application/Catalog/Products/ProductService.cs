@@ -62,6 +62,7 @@ namespace myeshop.Application.Catalog.Products
                 Quantity = request.Quantity,
                 DateCreate = DateTime.Now,
                 Description = request.Description
+                
             };
             //Save image
             //if (request.ThumbnailImage != null)
