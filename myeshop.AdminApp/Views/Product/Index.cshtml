@@ -27,13 +27,9 @@
 <section class="ftco-section bg-light">
     <div class="container-fluid"  >
         <div class="row">
-            @if (Model != null)
-            {
-                foreach (var item in Model.Items)
+                @foreach (var item in Model.Items)
                 {
-
                     <div class="col-sm col-md-6 col-lg-3 ftco-animate">
-
                         <div class="product">
                             <a asp-area="" asp-controller="Product" asp-action="Details" asp-route-id="@item.Prod_ID" class="img-prod">
 
@@ -65,7 +61,6 @@
                         </div>
                         </div>
                         }
-                    }
         </div>
         @*---------------Phân trang---------------*@
         <div class="row mt-5">

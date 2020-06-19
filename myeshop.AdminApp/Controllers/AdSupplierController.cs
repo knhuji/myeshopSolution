@@ -58,11 +58,11 @@ namespace myeshop.AdminApp.Controllers
             var result = await _supplierApiClient.Create(request);
             if (result.IsSuccessed)
             {
-                TempData["result"] = "Thêm mới nhà sản xuất thành công";
+                //TempData["result"] = "Thêm mới nhà sản xuất thành công";
                 return RedirectToAction("Index");
             }
 
-            ModelState.AddModelError("", result.Message);
+            //ModelState.AddModelError("", result.Message);
             return View();
         }
 
