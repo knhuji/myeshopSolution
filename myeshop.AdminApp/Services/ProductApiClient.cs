@@ -18,7 +18,7 @@ namespace myeshop.AdminApp.Services
         {
             _httpClientFactory = httpClientFactory;
         }
-        public async Task<ApiResult<int>> Create(ProductCreateRequest request)
+        public async Task<ApiResult<string>> Create(ProductCreateRequest request)
         {
             var json = JsonConvert.SerializeObject(request);
             var httpContent = new StringContent(json, Encoding.UTF8, "application/json");
@@ -28,8 +28,9 @@ namespace myeshop.AdminApp.Services
             var Token = await response.Content.ReadAsStringAsync();
 
            
-              //  int t = (int)JsonConvert.DeserializeObject(Token, typeof(int));
-                return new ApiSuccessResult<int>();
+             //  int t = (int)JsonConvert.DeserializeObject(Token, typeof(int));
+               // return new ApiSuccessResult<int>(Token.);
+               return new ApiSuccessResult<string>(Token);
             
 
         }

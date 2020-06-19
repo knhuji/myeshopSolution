@@ -61,8 +61,10 @@ namespace myeshop.Application.Catalog.Products
                 Price = request.Price,
                 Quantity = request.Quantity,
                 DateCreate = DateTime.Now,
-                Description = request.Description
-            };
+                Description = request.Description,
+                Supplier_ID = request.Supplier_ID,
+                ThumbnailImage=request.ThumbnailImage
+    };
             //Save image
             //if (request.ThumbnailImage != null)
             //{

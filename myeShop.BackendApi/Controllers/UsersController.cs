@@ -12,6 +12,7 @@ namespace myeShop.BackendApi.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
+    
     public class UsersController : ControllerBase
     {
         private readonly IUserService _userService;
@@ -63,6 +64,7 @@ namespace myeShop.BackendApi.Controllers
 
        
         [HttpGet("paging")]
+        [Authorize(Roles = "admin")]
         public async Task<IActionResult> GetAllPaging([FromQuery] GetUserPagingRequest request)
         {
             var products = await _userService.GetUsersPaging(request);
@@ -70,6 +72,7 @@ namespace myeShop.BackendApi.Controllers
         }
 
         [HttpGet("{id}")]
+        [Authorize(Roles = "admin")]
         public async Task<IActionResult> GetById(Guid id)
         {
             var user = await _userService.GetById(id);
@@ -77,6 +80,7 @@ namespace myeShop.BackendApi.Controllers
         }
 
         [HttpDelete("{id}")]
+        [Authorize(Roles = "admin")]
         public async Task<IActionResult> Delete(Guid id)
         {
             var result = await _userService.Delete(id);
@@ -84,6 +88,7 @@ namespace myeShop.BackendApi.Controllers
         }
 
         [HttpPut("{id}/roles")]
+        [Authorize(Roles ="admin")]
         public async Task<IActionResult> RoleAssign(Guid id, [FromBody]RoleAssignRequest request)
         {
             if (!ModelState.IsValid)

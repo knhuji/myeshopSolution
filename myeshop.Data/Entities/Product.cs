@@ -19,6 +19,8 @@ namespace myeshop.Data.Entities
         public List<OrderDetail> OrderDetails { get; set; }
         public List<Cart> Carts { get; set; }
         public List<ProductImage> ProductImages { get; set; }
-        
+      
+        public int Supplier_ID { get; set; }
+        public string ThumbnailImage { get; set; }
     }
 }

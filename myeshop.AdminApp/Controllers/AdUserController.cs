@@ -218,7 +218,7 @@ namespace myeshop.AdminApp.Controllers
         public async Task<IActionResult> Logout()
         {
             await HttpContext.SignOutAsync(CookieAuthenticationDefaults.AuthenticationScheme);
-            return RedirectToAction("(Index", "Home");
+            return RedirectToAction("Index", "Home");
         }
 
         private ClaimsPrincipal ValidateToken(string jwtToken)

@@ -1,0 +1,48 @@
+﻿@inject myeshop.AdminApp.Services.IBuyerService buyerService
+
+@if (User.Identity.IsAuthenticated)
+{
+    if (User.IsInRole("admin"))
+    {
+        <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" id="userDropdown" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i class="fas fa-user fa-fw"></i></a>
+            <div class="dropdown-menu dropdown-menu-right" aria-labelledby="userDropdown">
+                <a class="dropdown-item" href="/Profile/Index">@User.Identity.Name</a>
+                <a class="dropdown-item" asp-controller="AdHome" asp-action="Index">ADMIN</a>
+                <div class="dropdown-divider"></div>
+                <form method="post" asp-controller="AdUser" asp-action="Logout">
+                    <button type="submit" class="dropdown-item">Đăng xuất</button>
+                </form>
+
+            </div>
+        </li>
+    }
+    else
+    {
+        <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" id="userDropdown" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i class="fas fa-user fa-fw"></i></a>
+            <div class="dropdown-menu dropdown-menu-right" aria-labelledby="userDropdown">
+                <a class="dropdown-item" href="/Profile/Index">@User.Identity.Name</a>
+                @*<a class="dropdown-item" asp-controller="AdHome" asp-action="Index">ADMIN</a>*@
+                <div class="dropdown-divider"></div>
+                <form method="post" asp-controller="AdUser" asp-action="Logout">
+                    <button type="submit" class="dropdown-item">Đăng xuất</button>
+                </form>
+
+            </div>
+        </li>
+        @*<a class="nav-link text-dark" asp-area="" asp-controller="Cart" asp-action="Index">@await Component.InvokeAsync("Basket", new { user = User})</a>*@
+    }
+}
+else
+{
+    <li class="nav-item">
+
+        <a class="nav-link dropdown-toggle" id="userDropdown" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i class="fas fa-user fa-fw"></i></a>
+        <div class="dropdown-menu dropdown-menu-right" aria-labelledby="userDropdown">
+            <a class="dropdown-item" asp-action="Login" asp-controller="AdUser">Login</a>
+            <a class="dropdown-item" asp-action="Register" asp-controller="AdUser">Đăng Ký</a>
+
+        </div>
+    </li>
+}

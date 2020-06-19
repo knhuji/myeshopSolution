@@ -1,4 +1,5 @@
-﻿using myeshop.Data.Enums;
+﻿using myeshop.Data.Entities;
+using myeshop.Data.Enums;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -14,8 +15,9 @@ namespace myeShop.ViewModels.Catalog.Products
         public DateTime DateCreate { get; set; }
         public string Description { get; set; }
         public Status Status { get; set; }
-        
-       
+        public int Supplier_ID { get; set; }
+        public string ThumbnailImage { get; set; }
+
     }
 
 }

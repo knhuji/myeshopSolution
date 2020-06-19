@@ -53,6 +53,8 @@ namespace myeshop.AdminApp
             services.AddTransient<IProductApiClient, ProductApiClient>();
             services.AddTransient<ISupplierApiClient, SupplierApiClient>();
             services.AddTransient<IRoleApiClient, RoleApiClient>();
+            services.AddTransient<ICartApiClient, CartApiClient>();
+            services.AddTransient<IBuyerService, BuyerService>();
 
             IMvcBuilder builder = services.AddRazorPages();
             var environment = Environment.GetEnvironmentVariable("ASPNETCORE_ENVIRONMENT");
@@ -79,6 +81,7 @@ namespace myeshop.AdminApp
                 app.UseHsts();
             }
             app.UseHttpsRedirection();
+            app.UseSession();
             app.UseStaticFiles();
 
             app.UseAuthentication();
