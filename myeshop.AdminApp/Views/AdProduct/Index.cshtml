@@ -77,7 +77,9 @@
                     </tbody>
                 </table>
             </div>
-            @*@await Component.InvokeAsync("Pager", Model)*@
+            <nav class="row justify-content-end mr-3">
+                @await Component.InvokeAsync("Pager", Model)
+            </nav>
         </div>
     </div>
 </div>

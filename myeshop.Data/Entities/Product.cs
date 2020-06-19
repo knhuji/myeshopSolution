@@ -14,6 +14,8 @@ namespace myeshop.Data.Entities
         public DateTime DateCreate { get; set; }
         public string Description { get; set; }
         public Status Status { get; set; }
+        public string ImagePath { get; set; }
+        public int Supplier_ID { get; set; }
         public List<ProductInSupplier> ProductInSuppliers { get; set; }
         public List<ProductInSize> ProductInSizes { get; set; }
         public List<OrderDetail> OrderDetails { get; set; }

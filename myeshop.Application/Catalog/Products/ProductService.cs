@@ -61,7 +61,9 @@ namespace myeshop.Application.Catalog.Products
                 Price = request.Price,
                 Quantity = request.Quantity,
                 DateCreate = DateTime.Now,
-                Description = request.Description
+                Description = request.Description,
+                ImagePath=request.ImagePath,
+                Supplier_ID=request.Supplier_ID
                 
             };
             //Save image
@@ -176,7 +178,8 @@ namespace myeshop.Application.Catalog.Products
                     Description = x.p.Description,
                     Price = x.p.Price,
                     Quantity = x.p.Quantity,
-                    Status = x.p.Status
+                    Status = x.p.Status,
+                    ImagePath = x.p.ImagePath
                 }).ToListAsync();
 
             //Select and projection

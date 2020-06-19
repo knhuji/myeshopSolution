@@ -14,8 +14,10 @@ namespace myeShop.ViewModels.Catalog.Products
         public DateTime DateCreate { get; set; }
         public string Description { get; set; }
         public Status Status { get; set; }
-        
-       
+        public string ImagePath { get; set; }
+        public int Supplier_ID { get; set; }
+
+
     }
 
 }

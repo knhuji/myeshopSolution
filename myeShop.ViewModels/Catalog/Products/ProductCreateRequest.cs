@@ -16,6 +16,8 @@ namespace myeShop.ViewModels.Catalog.Products
         public string Description { get; set; }
         public Status Status { get; set; }
         public IFormFile ThumbnailImage { get; set; }
-        
+        public string ImagePath { get; set; }
+        public int Supplier_ID { get; set; }
+
     }
 }
