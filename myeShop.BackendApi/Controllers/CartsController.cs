@@ -10,15 +10,18 @@ using myeShop.ViewModels.Catalog.Carts;
 
 namespace myeShop.BackendApi.Controllers
 {
-    [Route("api/[controller]")]
+    [Route("api/[controller]/Redis")]
     [ApiController]
     [Authorize]
     public class CartsController : ControllerBase
     {
         private readonly ICartService _cartService;
-        public CartsController(ICartService cartService)
+       
+
+        public CartsController(ICartService cartService )
         {
             _cartService = cartService;
+           
         }
         [HttpGet("{id}")]
         public async Task<IActionResult> Get(string id)
@@ -49,4 +52,5 @@ namespace myeShop.BackendApi.Controllers
             return Ok();
         }
     }
+    
 }

@@ -82,6 +82,7 @@ namespace myeshop.Application.Catalog.Products
             //    };
             //}
             _context.ProductImage.Add(product);
+            
             await _context.SaveChangesAsync();
             return product.Prod_ID;
         }
@@ -99,9 +100,10 @@ namespace myeshop.Application.Catalog.Products
                 Description = product.Description,
                 Prod_Name = product.Prod_Name,
                 Price = product.Price,
-                Quantity=product.Quantity,
-                Status=product.Status
-                
+
+                Status=product.Status,
+                Quantity=product.Quantity
+
             };
             return new ApiSuccessResult<ProductViewModel>(productViewModel);
 

@@ -5,6 +5,11 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Content Remove="Views\Shared\Components\Basket\Default.cshtml" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="DocumentFormat.OpenXml" Version="2.11.0" />
     <PackageReference Include="FluentValidation.AspNetCore" Version="8.6.2" />
     <PackageReference Include="Microsoft.AspNet.WebPages" Version="3.2.7" />
     <PackageReference Include="Microsoft.AspNetCore.Identity" Version="2.2.0" />
@@ -33,6 +38,10 @@
     <ProjectReference Include="..\myeshop.Data\myeshop.Data.csproj" />
     <ProjectReference Include="..\myeShop.Utilities\myeShop.Utilities.csproj" />
     <ProjectReference Include="..\myeShop.ViewModels\myeShop.ViewModels.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Include="Views\Shared\Components\Basket\Default.cshtml" />
   </ItemGroup>
 
 </Project>

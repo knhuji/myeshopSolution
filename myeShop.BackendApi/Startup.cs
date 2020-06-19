@@ -1,3 +1,4 @@
+
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -6,6 +7,7 @@ using FluentValidation.AspNetCore;
 using FluentValidation;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
+using EasyCaching.Core.Configurations;
 using Microsoft.AspNetCore.HttpsPolicy;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
@@ -15,6 +17,7 @@ using Microsoft.Extensions.Hosting;
 using Microsoft.OpenApi.Models;
 using myeshop.Application.System.Users;
 using myeshop.Data.EF;
+using Microsoft.Extensions.Caching.Distributed;
 using myeshop.Data.Entities;
 using myeShop.Utilities.Constants;
 using myeShop.ViewModels.System.Users;
@@ -25,17 +28,25 @@ using myeshop.Application.Catalog.Carts;
 using StackExchange.Redis;
 using Microsoft.CodeAnalysis.Options;
 using myeshop.Application.Catalog.Suppliers;
+
+using Microsoft.AspNetCore.Mvc;
+using System.Text;
+
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.IdentityModel.Tokens;
 using myeshop.Application.System.Roles;
+
 
 namespace myeShop.BackendApi
 {
     public class Startup
     {
+        
+    
         public Startup(IConfiguration configuration)
         {
             Configuration = configuration;
+          
         }
 
         public IConfiguration Configuration { get; }
@@ -116,11 +127,33 @@ namespace myeShop.BackendApi
                 });
             });
             //services.AddMemoryCache();
-            services.AddStackExchangeRedisCache(Options =>
+            //services.AddStackExchangeRedisCache(Options =>
+            //{
+            //    Options.Configuration = "https://localhost:5001,password=rediskey,ssl=True,abortConnect=False";
+            //    Options.InstanceName = "master";
+            //});
+
+            services.AddEasyCaching(options =>
             {
-                Options.Configuration = "redisname.redis.cache.windows.net:6380,password=rediskey,ssl=True,abortConnect=False";
-                Options.InstanceName = "master";
+                //use redis cache
+                options.UseRedis(redisConfig =>
+                {
+                    //Setup Endpoint
+                    redisConfig.DBConfig.Endpoints.Add(new ServerEndPoint("localhost", 6379));
+
+                    //Setup password if applicable
+                    //if (!string.IsNullOrEmpty(serverPassword))
+                    //{
+                    //    redisConfig.DBConfig.Password = serverPassword;
+                    //}
+
+                    //Allow admin operations
+                    redisConfig.DBConfig.AllowAdmin = true;
+                },
+                    "redis1");
             });
+
+
 
             //services.AddSingleton<ConnectionMultiplexer>(sp =>
             //{
@@ -150,10 +183,13 @@ namespace myeShop.BackendApi
 
 
         }
+        
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
+            
+
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();

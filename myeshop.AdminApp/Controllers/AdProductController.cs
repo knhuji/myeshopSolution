@@ -62,8 +62,10 @@ namespace myeshop.AdminApp.Controllers
                 return RedirectToAction("Index");
             }
 
+
             //ModelState.AddModelError("", result.Message);
             return View();
+
         }
 
         [HttpGet]
