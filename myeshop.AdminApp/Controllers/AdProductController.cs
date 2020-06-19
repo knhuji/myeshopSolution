@@ -58,12 +58,8 @@ namespace myeshop.AdminApp.Controllers
             var result = await _productApiClient.Create(request);
             if (result.IsSuccessed)
             {
-
                 return RedirectToAction("Index");
             }
-
-
-            //ModelState.AddModelError("", result.Message);
             return View();
 
         }
@@ -95,9 +91,9 @@ namespace myeshop.AdminApp.Controllers
         }
 
         [HttpGet]
-        public async Task<IActionResult> Edit(int id)
+        public async Task<IActionResult> Edit(int productID)
         {
-            var result = await _productApiClient.GetById(id);
+            var result = await _productApiClient.GetById(productID);
             if (result.IsSuccessed)
             {
                 var pro = result.ResultObj;
@@ -107,8 +103,7 @@ namespace myeshop.AdminApp.Controllers
                     Description = pro.Description,
                     Price = pro.Price,
                     Quantity = pro.Quantity,
-                    Status = pro.Status,
-                    Prod_ID = id
+                    Status = pro.Status
                 };
                 return View(updateRequest);
             }

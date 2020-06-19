@@ -63,14 +63,13 @@ namespace myeshop.Application.Catalog.Suppliers
 
        
 
-        public async Task<ApiResult<int>> Update(SupplierUpdateRequest request)
+        public async Task<int> Update(SupplierUpdateRequest request)
         {
             var supplier = await _context.Suppliers.FindAsync(request.Supplier_ID);
             if (supplier == null)
             {
                 throw new MyeshopException($"Nhà cung cấp không tồn tại");
             }
-
             supplier.Supplier_Name = request.Supplier_Name;
             supplier.Gmail = request.Gmail;
             supplier.Address = request.Address;
@@ -88,8 +87,7 @@ namespace myeshop.Application.Catalog.Suppliers
             //        _context.ProductImages.Update(thumbnailImage);
             //    }
             //}
-            await _context.SaveChangesAsync();
-            return new ApiSuccessResult<int>();
+            return await _context.SaveChangesAsync();
         }
 
         public async Task<ApiResult<SupplierViewModel>> GetById(int supplierId)

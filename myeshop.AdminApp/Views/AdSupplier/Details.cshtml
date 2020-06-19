@@ -1,0 +1,40 @@
+﻿@model myeShop.ViewModels.Catalog.Suppliers.SupplierViewModel;
+@{
+    ViewData["Title"] = "Edit";
+    Layout = "~/Views/Shared/_LayoutAd.cshtml";
+}
+    <div class="container-fluid">
+        <h1 class="mt-4">Quản lý thương hiệu</h1>
+        <hr />
+        <h3>Chi tiết thương hiệu</h3>
+        <div class="form-row">
+            <div class="col-md-6 mb-3 md-form">
+                <label asp-for="Supplier_Name" for="suppliername">Tên thương hiệu</label>
+                <input asp-for="Supplier_Name" type="text" class="form-control" id="suppliername" disabled>
+            </div>
+            <div class="col-md-6 mb-3">
+                <label asp-for="Gmail" for="gmail">Email</label>
+                <input asp-for="Gmail" type="text" class="form-control" id="email" disabled>
+            </div>
+        </div>
+        <div class="form-row">
+            <div class="col-md-4 mb-3">
+                <label asp-for="Address" for="address">Địa chỉ</label>
+                <input asp-for="Address" type="text" class="form-control" id="address" disabled>
+            </div>
+            <div class="col-md-4 mb-3">
+                <label asp-for="Phone" for="phone">Số điện thoại</label>
+                <input asp-for="Phone" type="text" class="form-control" id="phone" disabled>
+            </div>
+            <div class="col-md-4 mb-3">
+                <label asp-for="Status" for="status">Trạng thái</label>
+                <select asp-for="Status" class="form-select form-control" disabled>
+                    <option value="1">Hoạt đông</option>
+                    <option value="2">Chưa hoạt động</option>
+                </select>
+            </div>
+        </div>
+    </div>
+
+
+
