@@ -101,13 +101,12 @@ namespace myeshop.AdminApp.Controllers
                 var s = result.ResultObj;
                 var updateRequest = new SupplierUpdateRequest()
                 {
-                    Supplier_ID = s.Supplier_ID,
                     Supplier_Name = s.Supplier_Name,
                     Gmail = s.Gmail,
                     Address = s.Address,
-
                     Phone = s.Phone,
-                    Status = s.Status
+                    Status = s.Status,
+                    Supplier_ID = id
                 };
                 return View(updateRequest);
             }
@@ -123,11 +122,11 @@ namespace myeshop.AdminApp.Controllers
             var result = await _supplierApiClient.Update(request);
             if (result.IsSuccessed)
             {
-                TempData["result"] = "Cập nhật nhà sản xuất thành công";
+                //TempData["result"] = "Cập nhật nhà sản xuất thành công";
                 return RedirectToAction("Index");
             }
 
-            ModelState.AddModelError("", result.Message);
+            //ModelState.AddModelError("", result.Message);
             return View(request);
         }
 

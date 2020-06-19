@@ -1,4 +1,4 @@
-﻿
+﻿@model myeShop.ViewModels.Catalog.Suppliers.SupplierUpdateRequest;
 @{
     ViewData["Title"] = "Edit";
     Layout = "~/Views/Shared/_LayoutAd.cshtml";
@@ -8,18 +8,22 @@
     <hr />
     <h3>Sửa thương hiệu</h3>
     <div class="mb-4">
-        <form class="needs-validation" novalidate>
+        <form asp-action="Edit" class="needs-validation" novalidate>
             <div class="form-row">
-                <div class="col-md-6 mb-3 md-form">
-                    <label for="suppliername">Tên thương hiệu</label>
-                    <input type="text" class="form-control" id="suppliername" placeholder="Tên thương hiệu.." required>
+                <div class="col-md-4 mb-3 md-form">
+                    <label asp-for="Supplier_ID">Mã</label>
+                    <input asp-for="Supplier_ID" type="text" class="form-control disabled" id="supplierid" >
+                </div>
+                <div class="col-md-4 mb-3 md-form">
+                    <label asp-for="Supplier_Name" for="suppliername">Tên thương hiệu</label>
+                    <input asp-for="Supplier_Name" type="text" class="form-control" id="suppliername" placeholder="Tên thương hiệu.." required>
                     <div class="invalid-feedback">
                         Vui lòng nhập tên thương hiệu
                     </div>
                 </div>
-                <div class="col-md-6 mb-3">
-                    <label for="gmail">Email</label>
-                    <input type="text" class="form-control" id="email" placeholder="Email..." value="" required>
+                <div class="col-md-4 mb-3">
+                    <label asp-for="Gmail" for="gmail">Email</label>
+                    <input asp-for="Gmail" type="text" class="form-control" id="email" placeholder="Email..." required>
                     <div class="invalid-feedback">
                         Vui lòng nhập Email
                     </div>
@@ -27,39 +31,45 @@
             </div>
             <div class="form-row">
                 <div class="col-md-4 mb-3">
-                    <label for="address">Địa chỉ</label>
-                    <input type="text" class="form-control" id="address" placeholder="Địa chỉ..." value="" required>
+                    <label asp-for="Address" for="address">Địa chỉ</label>
+                    <input asp-for="Address" type="text" class="form-control" id="address" placeholder="Địa chỉ..."  required>
                     <div class="invalid-feedback">
                         Vui lòng nhập địa chỉ
                     </div>
                 </div>
                 <div class="col-md-4 mb-3">
-                    <label for="phone">Số điện thoại</label>
-                    <input type="text" class="form-control" id="phone" placeholder="Số điện thoại..." required>
+                    <label asp-for="Phone" for="phone">Số điện thoại</label>
+                    <input asp-for="Phone" type="text" class="form-control" id="phone" placeholder="Số điện thoại..." required>
                     <div class="invalid-feedback">
                         Vui lòng nhập số điện thoại
                     </div>
                 </div>
                 <div class="col-md-4 mb-3">
-                    <label for="status">Trạng thái</label>
-                    <select class="form-select form-control">
-                        <option value="1">Hoạt đông</option>
-                        <option value="2">Chưa hoạt động</option>
-                    </select>
-                </div>
+                <label asp-for="Status" for="status">Trạng thái</label>
+                <select asp-for="Status" class="form-select form-control">
+                    <option value="1">Hoạt đông</option>
+                    <option value="2">Chưa hoạt động</option>
+                </select>
+            </div>
             </div>
             <div class="form-row">
-                <div class="col-md-6 mb-3 shadow-textarea">
-                    <label for="image">Chọn hình ảnh</label>
-                    <hr />
-                    <input type="file" class="btn btn-rounded float-left" onchange="readURL(this);">
-                </div>
-                <div class="col-md-6 mb-3 mx-auto  px-2 py-2">
-                    <!-- Uploaded image area-->
-                    <div class="image-area mt-4" style="width: 150px"><img id="imageResult" src="#" alt="" class="img-fluid rounded shadow-sm mx-auto d-block"></div>
-                </div>
+            <div class="col-md-6 mb-3 shadow-textarea">
+                <label for="image">Chọn hình ảnh</label>
+                <hr />
+                <input type="file" class="btn btn-rounded float-left" onchange="readURL(this);">
             </div>
-            <button class="btn btn-primary btn-lg" type="submit">Sửa</button>
+            <div class="col-md-6 mb-3 mx-auto  px-2 py-2">
+                <div class="image-area mt-4" style="width: 150px"><img id="imageResult" src="#" alt="" class="img-fluid rounded shadow-sm mx-auto d-block"></div>
+            </div>
+        </div>
+            <button class="btn btn-primary btn-lg" type="submit">Thêm</button>
+            <div class="row justify-content-between">
+                <a asp-action="Index" asp-controller="AdSupplier" class="btn btn-info small">Về danh sách</a>
+                <button type="submit">
+                    Tạo
+                    <i class="zmdi zmdi-arrow-right"></i>
+                </button>
+            </div>
         </form>
     </div>
 </div>

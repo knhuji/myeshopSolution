@@ -54,8 +54,11 @@ namespace myeShop.BackendApi.Controllers
             if (!ModelState.IsValid)
                 return BadRequest(ModelState);
             var result = await _supplierService.Update(request);
-            if (!result.IsSuccessed)
-                return BadRequest(result);
+            //if (!result.IsSuccessed) 
+            //    return BadRequest(result);
+            //return Ok(result);
+            if (result == 0)
+                return BadRequest();
             return Ok();
         }
 
