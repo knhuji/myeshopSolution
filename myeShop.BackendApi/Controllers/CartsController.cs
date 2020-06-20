@@ -6,6 +6,7 @@ using EasyCaching.Core;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using myeshop.Application.Catalog.Carts;
+using myeshop.Application.Catalog.Products;
 using myeShop.ViewModels.Catalog.Carts;
 
 namespace myeShop.BackendApi.Controllers
@@ -16,12 +17,13 @@ namespace myeShop.BackendApi.Controllers
     public class CartsController : ControllerBase
     {
         private readonly ICartService _cartService;
-       
+        private readonly IProductService _productService;
 
-        public CartsController(ICartService cartService )
+        public CartsController(ICartService cartService, IProductService productService)
         {
             _cartService = cartService;
-           
+            _productService = productService;
+
         }
         [HttpGet("{id}")]
         public async Task<IActionResult> Get(string id)

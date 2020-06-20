@@ -35,7 +35,7 @@ using System.Text;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.IdentityModel.Tokens;
 using myeshop.Application.System.Roles;
-
+using myeshop.Application.Catalog.Orders;
 
 namespace myeShop.BackendApi
 {
@@ -176,6 +176,7 @@ namespace myeShop.BackendApi
             services.AddTransient<ISupplierService, SupplierService>();
             services.AddTransient<ICartService, CartService>();
             services.AddTransient<IRoleService, RoleService>();
+            services.AddTransient<IOrderService, OrderService>();
 
             //services.AddTransient < IValidator<LoginRequest>, LoginRequestValidator >();
             //services.AddTransient<IValidator<RegisterRequest>, RegisterRequestValidator>();
