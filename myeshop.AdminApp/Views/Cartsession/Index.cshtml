@@ -1,0 +1,99 @@
+﻿@model myeShop.ViewModels.Catalog.Carts.CartItemViewModel;
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<div class="hero-wrap hero-bread" style="background-image: url('../../images/bg_6.jpg');">
+    <div class="container">
+        <div class="row no-gutters slider-text align-items-center justify-content-center">
+            <div class="col-md-9 ftco-animate text-center">
+                <h1 class="mb-0 bread">Giỏ Hàng</h1>
+            </div>
+        </div>
+    </div>
+</div>
+
+<section class="ftco-section ftco-cart" method="POST">
+    <div class="esh-basket">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12 ftco-animate">
+                    <div class="cart-list">
+                        <table class="table">
+                            <thead class="thead-primary">
+                                <tr class="text-center">
+                                    <th>&nbsp;</th>
+                                    <th>&nbsp;</th>
+                                    <th>Sản phẩm</th>
+                                    <th>Giá</th>
+                                    <th>Số lượng</th>
+                                    <th>Tổng</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach (var item in ViewBag.cart)
+                                {
+
+                                    <tr class="text-center">
+                                        <td class="product-remove"><a asp-controller="Cartsession" asp-action="remove" asp-route-id="@item.Prod_ID"><span class="ion-ios-close"></span></a></td>
+
+                                        <td class="image-prod"><div class="img" style="background-image: url('../../images/@item.ImagePath');"></div></td>
+
+                                        <td class="product-name">
+                                            <h3>@item.Prod_Name</h3>
+                                        </td>
+
+                                        <td class="price">$ @item.Price</td>
+
+                                        <td class="quantity">
+                                            <div class="input-group mb-3">
+                                                @*<input type="text" asp-for="@Html.DisplayFor(modelItem => item.Quantity)" name="quantity" class="quantity form-control input-number" value="1" min="1" max="100">*@
+                                                <h5>@item.Quantity</h5>
+                                            </div>
+                                        </td>
+
+                                        <td class="total">$@Math.Round(item.Price * item.Quantity, 2)</td>
+                                    </tr><!-- END TR-->
+                                }
+                                
+                                <tr>
+                                    <td>
+                                        <a asp-controller="Product" asp-action="index">Tiếp tục mua sắm</a>
+                                       
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+            <div class="row justify-content-end">
+                <div class="col col-lg-5 col-md-6 mt-5 cart-wrap ftco-animate">
+                    <div class="cart-total mb-3">
+                        <h3>Giỏ hàng</h3>
+                        <p class="d-flex">
+                            <span>Tổng tiền</span>
+                            <span>$ @ViewBag.total</span>
+                        </p>
+                        <p class="d-flex">
+                            <span>Phí ship</span>
+                            <span>$0.00</span>
+                        </p>
+                        <p class="d-flex">
+                            <span>Giảm giá</span>
+                            <span>$0.00</span>
+                        </p>
+                        <hr>
+                        <p class="d-flex total-price">
+                            <span>Thành tiền</span>
+                            <span>$ @ViewBag.total</span>
+                        </p>
+                    </div>
+                    <p class="text-center"><a asp-controller="Product" asp-action="Index"  class="btn btn-primary py-3 px-4">Mua hàng</a></p>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</section>

@@ -8,6 +8,9 @@ using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.HttpsPolicy;
+using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Infrastructure;
+using Microsoft.AspNetCore.Mvc.Routing;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
@@ -36,7 +39,13 @@ namespace myeshop.AdminApp
                    options.LoginPath = "/AdUser/Login/";
                    options.AccessDeniedPath = "/AdUser/Forbidden/";
                });
+            services.AddScoped<IUrlHelper>(x =>
+            {
+                var actionContext = x.GetRequiredService<IActionContextAccessor>().ActionContext;
+                var factory = x.GetRequiredService<IUrlHelperFactory>();
 
+                return factory.GetUrlHelper(actionContext);
+            });
 
             services.AddControllersWithViews()
                 .AddFluentValidation(fv => { 
@@ -58,6 +67,7 @@ namespace myeshop.AdminApp
 
 
             services.AddTransient<IRoleApiClient, RoleApiClient>();
+            services.AddTransient<IOrder, Order>();
 
 
             IMvcBuilder builder = services.AddRazorPages();

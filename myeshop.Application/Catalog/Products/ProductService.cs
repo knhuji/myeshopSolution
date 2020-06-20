@@ -103,7 +103,8 @@ namespace myeshop.Application.Catalog.Products
                 Price = product.Price,
 
                 Status=product.Status,
-                Quantity=product.Quantity
+                Quantity=product.Quantity,
+                ImagePath = product.ImagePath
 
             };
             return new ApiSuccessResult<ProductViewModel>(productViewModel);
