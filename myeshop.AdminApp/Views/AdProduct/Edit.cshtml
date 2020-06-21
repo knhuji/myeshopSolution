@@ -12,7 +12,7 @@
             <div class="form-row">
                 <div class="col-md-4 mb-3 md-form">
                     <label asp-for="Prod_ID">Mã</label>
-                    <input asp-for="Prod_ID" type="text" class="form-control">
+                    <input asp-for="Prod_ID" type="text" class="form-control disabled">
                 </div>
                 <div class="col-md-4 mb-3 md-form">
                     <label asp-for="Prod_Name">Tên sản phẩm</label>
@@ -67,9 +67,9 @@
                     </div>
                 </div>*@
             </div>
-            <div class="row justify-content-between">
-                <a asp-action="Index" asp-controller="AdProduct" class="btn btn-info small">Về danh sách</a>
-                <button type="submit" class="btn btn-primary">
+            <div class="row>
+                <a asp-action="Index" asp-controller="AdProduct" class="btn btn-outline-secondary small">Về danh sách</a>
+                <button type="submit" class="btn btn-info" style="margin-left: 30px">
                     Lưu
                 </button>
             </div>
