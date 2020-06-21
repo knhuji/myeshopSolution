@@ -1,7 +1,47 @@
-﻿
+﻿@model myeShop.ViewModels.Catalog.Products.ProductViewModel;
 @{
-    ViewData["Title"] = "Details";
+    ViewData["Title"] = "Edit";
+    Layout = "~/Views/Shared/_LayoutAd.cshtml";
 }
+    <div class="container-fluid">
+        <h1 class="mt-4">Quản lý sản phẩm</h1>
+        <hr />
+        <h3>Chi tiết sản phẩm</h3>
+        <div class="form-row">
+            <div class="col-md-6 mb-3 md-form">
+                <label asp-for="Prod_ID">Mã</label>
+                <input asp-for="Prod_ID" type="text" class="form-control" disabled>
+            </div>
+            <div class="col-md-6 mb-3 md-form">
+                <label asp-for="Prod_Name">Tên sản phẩm</label>
+                <input asp-for="Prod_Name" type="text" class="form-control" disabled>
+            </div>
+        </div>
+        <div class="form-row">
+            <div class="col-md-4 mb-3">
+                <label for="price">Giá tiền</label>
+                <input asp-for="Price" type="text" class="form-control" disabled>
+            </div>
+            <div class="col-md-4 mb-3">
+                <label for="quantity">Số lượng</label>
+                <input asp-for="Quantity" type="number" class="form-control" disabled>
+            </div>
+            <div class="col-md-4 mb-3">
+                <label asp-for="Status">Trạng thái</label>
+                <select asp-for="Status" class="form-select form-control" disabled>
+                    <option value="1">Hàng đang kinh doanh</option>
+                    <option value="2"> Hàng ngừng kinh doanh</option>
+                </select>
+            </div>
+        </div>
+        <div class="form-row">
+            <div class="col-md-12 mb-3 shadow-textarea">
+                <label for="description">Mô tả</label>
+                <textarea asp-for="Description" class="form-control" z-depth-1 data="description" rows="5" disabled></textarea>
+            </div>
+        </div>  
+        <div> <a asp-action="Index" asp-controller="AdProduct" class="btn btn-info small">Về danh sách</a></div>
+    </div>
 
-<h1>Details</h1>
+
 
