@@ -103,7 +103,8 @@ namespace myeshop.AdminApp.Controllers
                     Description = pro.Description,
                     Price = pro.Price,
                     Quantity = pro.Quantity,
-                    Status = pro.Status
+                    Status = pro.Status,
+                    Prod_ID = productID
                 };
                 return View(updateRequest);
             }
@@ -118,10 +119,10 @@ namespace myeshop.AdminApp.Controllers
             var result = await _productApiClient.Update(request);
             if (result.IsSuccessed)
             {
-                TempData["result"] = "Cập nhật sản phẩm thành công";
+                //TempData["result"] = "Cập nhật sản phẩm thành công";
                 return RedirectToAction("Index");
             }
-            ModelState.AddModelError("",result.Message);
+            //ModelState.AddModelError("",result.Message);
             return View();
         }
     }

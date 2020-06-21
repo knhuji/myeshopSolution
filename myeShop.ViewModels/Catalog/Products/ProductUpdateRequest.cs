@@ -14,6 +14,7 @@ namespace myeShop.ViewModels.Catalog.Products
         public decimal Price { get; set; }
         public string Description { get; set; }
         public Status Status { get; set; }
+        public int Supplier_ID { get; set; }
         public IFormFile ThumbnailImage { get; set; }
         
     }

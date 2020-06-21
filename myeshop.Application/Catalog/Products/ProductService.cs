@@ -209,7 +209,7 @@ namespace myeshop.Application.Catalog.Products
             return new ApiSuccessResult<int>();
         }
 
-        public async Task<ApiResult<int>> Update(ProductUpdateRequest request)
+        public async Task<int> Update(ProductUpdateRequest request)
         {
             var product = await _context.ProductImage.FindAsync(request.Prod_ID);
             if (product == null)
@@ -224,18 +224,17 @@ namespace myeshop.Application.Catalog.Products
             product.Status = request.Status;
 
             //Save image
-            if (request.ThumbnailImage != null)
-            {
-                var thumbnailImage = await _context.ProductImages.FirstOrDefaultAsync(i => i.IsDefault == true && i.Prod_ID == request.Prod_ID);
-                if (thumbnailImage != null)
-                {
-                    thumbnailImage.FileSize = request.ThumbnailImage.Length;
-                    thumbnailImage.ImagePath = await this.SaveFile(request.ThumbnailImage);
-                    _context.ProductImages.Update(thumbnailImage);
-                }
-            }
-            await _context.SaveChangesAsync();
-            return new ApiSuccessResult<int>();
+            //if (request.ThumbnailImage != null)
+            //{
+            //    var thumbnailImage = await _context.ProductImages.FirstOrDefaultAsync(i => i.IsDefault == true && i.Prod_ID == request.Prod_ID);
+            //    if (thumbnailImage != null)
+            //    {
+            //        thumbnailImage.FileSize = request.ThumbnailImage.Length;
+            //        thumbnailImage.ImagePath = await this.SaveFile(request.ThumbnailImage);
+            //        _context.ProductImages.Update(thumbnailImage);
+            //    }
+            //}
+            return await _context.SaveChangesAsync();
         }
 
         public async Task<ApiResult<int>> UpdateImage(int imageId, ProductImageCreateRequest request)

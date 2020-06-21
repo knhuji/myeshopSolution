@@ -1,4 +1,4 @@
-﻿
+﻿@model myeShop.ViewModels.Catalog.Products.ProductUpdateRequest;
 @{
     ViewData["Title"] = "Edit";
     Layout = "~/Views/Shared/_LayoutAd.cshtml";
@@ -8,40 +8,38 @@
     <hr />
     <h3>Sửa sản phẩm</h3>
     <div class="mb-4">
-        <form class="needs-validation" novalidate>
+        <form asp-action="Edit" class="needs-validation" novalidate>
             <div class="form-row">
-                <div class="col-md-6 mb-3 md-form">
-                    <label for="validationproductname">Tên sản phẩm</label>
-                    <input type="text" class="form-control" id="validationproductname" placeholder="Tên sản phẩm.." required>
+                <div class="col-md-4 mb-3 md-form">
+                    <label asp-for="Prod_ID">Mã</label>
+                    <input asp-for="Prod_ID" type="text" class="form-control">
+                </div>
+                <div class="col-md-4 mb-3 md-form">
+                    <label asp-for="Prod_Name">Tên sản phẩm</label>
+                    <input asp-for="Prod_Name" type="text" class="form-control"  >
                     <div class="invalid-feedback">
                         Vui lòng nhập tên sản phẩm
                     </div>
                 </div>
-                <div class="col-md-6 mb-3">
-                    <label for="supplier">Nhà cung cấp</label>
-                    <select class="form-select form-control">
-                        <option value="" disabled selected>Chọn nhà cung cấp</option>
-                        <option value="1">BRAND 1</option>
-                        <option value="2">BRAND 2</option>
-                        <option value="3">BRAND 3</option>
-                        <option value="4">BRAND 4</option>
-                    </select>
+                <div class="col-md-4 mb-3 md-form">
+                    <label asp-for="Supplier_ID">Mã thương hiệu</label>
+                    <input asp-for="Supplier_ID" type="text" class="form-control">
                     <div class="invalid-feedback">
-                        Vui lòng chọn nhà cung cấp
+                        Vui lòng nhập mã nhà cung cấp
                     </div>
                 </div>
             </div>
             <div class="form-row">
                 <div class="col-md-4 mb-3">
                     <label for="price">Giá tiền</label>
-                    <input type="text" class="form-control" id="price" placeholder="Giá sản phẩm..." value="" required>
+                    <input asp-for="Price" type="text" class="form-control">
                     <div class="invalid-feedback">
                         Vui lòng nhập giá tiền
                     </div>
                 </div>
                 <div class="col-md-4 mb-3">
                     <label for="quantity">Số lượng</label>
-                    <input type="number" class="form-control" id="quantity" placeholder="Số lượng...">
+                    <input asp-for="Quantity" type="number" class="form-control" id="quantity" placeholder="Số lượng...">
                 </div>
                 <div class="col-md-4 mb-3">
                     <label for="status">Trạng thái</label>
@@ -54,7 +52,7 @@
             <div class="form-row">
                 <div class="col-md-6 mb-3 shadow-textarea">
                     <label for="description">Mô tả</label>
-                    <textarea class="form-control" z-depth-1 data="description" rows="5" placeholder="Mô tả sản phẩm..." required></textarea>
+                    <textarea asp-for="Description" class="form-control" z-depth-1 data="description" rows="5" placeholder="Mô tả sản phẩm..." required></textarea>
                     <div class="invalid-feedback">
                         Vui lòng nhập mô tả sản phẩm
                     </div>
@@ -69,7 +67,12 @@
                     </div>
                 </div>
             </div>
-            <button class="btn btn-primary btn-lg" type="submit">Sửa</button>
+            <div class="row justify-content-between">
+                <a asp-action="Index" asp-controller="AdProduct" class="btn btn-info small">Về danh sách</a>
+                <button type="submit" class="btn btn-primary">
+                    Lưu
+                </button>
+            </div>
         </form>
     </div>
 </div>
