@@ -14,7 +14,7 @@ namespace myeshop.Application.Catalog.Products
     public interface IProductService
     {
         Task<int> Create(ProductCreateRequest request);
-        Task<ApiResult<int>> Update(ProductUpdateRequest request);
+        Task<int> Update(ProductUpdateRequest request);
         Task<ApiResult<bool>> Delete(int productId);
         Task<ApiResult<ProductViewModel>> GetById(int ProductId);
         Task<ApiResult<bool>> UpdatePrice(int productId, decimal newPrice);
