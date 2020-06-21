@@ -16,7 +16,7 @@
                 </div>
                 <div class="col-md-4 mb-3 md-form">
                     <label asp-for="Prod_Name">Tên sản phẩm</label>
-                    <input asp-for="Prod_Name" type="text" class="form-control"  >
+                    <input asp-for="Prod_Name" type="text" class="form-control">
                     <div class="invalid-feedback">
                         Vui lòng nhập tên sản phẩm
                     </div>
@@ -42,8 +42,8 @@
                     <input asp-for="Quantity" type="number" class="form-control" id="quantity" placeholder="Số lượng...">
                 </div>
                 <div class="col-md-4 mb-3">
-                    <label for="status">Trạng thái</label>
-                    <select class="form-select form-control">
+                    <label asp-for="Status">Trạng thái</label>
+                    <select asp-for="Status" class="form-select form-control">
                         <option value="1">Hàng đang kinh doanh</option>
                         <option value="2"> Hàng ngừng kinh doanh</option>
                     </select>
@@ -57,7 +57,7 @@
                         Vui lòng nhập mô tả sản phẩm
                     </div>
                 </div>
-                <div class="col-md-6 mb-3 mx-auto">
+                @*<div class="col-md-6 mb-3 mx-auto">
                     <label for="image">Chọn hình ảnh</label>
                     <hr />
                     <input type="file" class="btn btn-rounded float-left" onchange="readURL(this);">
@@ -65,7 +65,7 @@
                         <!-- Uploaded image area-->
                         <div class="image-area mt-4" style="width: 150px"><img id="imageResult" src="#" alt="" class="img-fluid rounded shadow-sm mx-auto d-block"></div>
                     </div>
-                </div>
+                </div>*@
             </div>
             <div class="row justify-content-between">
                 <a asp-action="Index" asp-controller="AdProduct" class="btn btn-info small">Về danh sách</a>
