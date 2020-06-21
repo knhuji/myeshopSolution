@@ -158,10 +158,10 @@ namespace myeshop.Application.Catalog.Products
             var query = from p in _context.ProductImage
 
                         select new { p };
-            //if (!string.IsNullOrEmpty(request.Keyword))
-            //{
-            //    query = query.Where(x => x.p.Prod_Name.Contains(request.Keyword));
-            //}
+            if (!string.IsNullOrEmpty(request.Keyword))
+            {
+                query = query.Where(x => x.p.Prod_Name.Contains(request.Keyword));
+            }
             //if (request.Supplier_ID.Count > 0)
             //{
             //    query = query.Where(p => request.Supplier_ID.Contains(p.pis.Supplier_ID));

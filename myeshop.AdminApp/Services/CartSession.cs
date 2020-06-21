@@ -22,7 +22,7 @@ namespace myeshop.AdminApp.Services
             return value == null ? default(List<CartItemViewModel>) : JsonConvert.DeserializeObject<List<CartItemViewModel>>(value);
         }
 
-        public static LoginRequest GetUser(this ISession session,string key)
+        public static LoginRequest GetUser<LoginRequest>(this ISession session,string key)
         {
             var v = session.GetString(key);
             return v == null ? default : JsonConvert.DeserializeObject<LoginRequest>(v);
