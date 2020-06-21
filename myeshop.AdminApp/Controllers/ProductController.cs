@@ -21,6 +21,7 @@ namespace myeshop.AdminApp.Controllers
             _configuration = configuration;
             _productApiClient = productApiClient;
         }
+        [HttpGet]
         public async Task<IActionResult> Index(string keyword, int pageIndex = 1, int pageSize = 10)
         {
             var request = new GetManageProductPagingRequest()

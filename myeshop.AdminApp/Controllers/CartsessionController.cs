@@ -1,12 +1,16 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Security.Claims;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using myeshop.AdminApp.Services;
 using myeshop.Application.Catalog.Products;
+using myeShop.Utilities.Constants;
 using myeShop.ViewModels.Catalog.Carts;
 using myeShop.ViewModels.Catalog.Products;
+using myeShop.ViewModels.System.Users;
 
 namespace myeshop.AdminApp.Controllers
 {
@@ -24,6 +28,12 @@ namespace myeshop.AdminApp.Controllers
         public IActionResult Index()
         {
             var cart = CartSession.GetObjectFromJson<List<CartItemViewModel>>(HttpContext.Session, "cart");
+            if (cart == null)
+            {
+                ViewBag.cart ="";
+                ViewBag.total = 0;
+                return View();
+            }
             ViewBag.cart = cart;
             ViewBag.total = cart.Sum(item => item.Price * item.Quantity);
             return View();
@@ -74,7 +84,24 @@ namespace myeshop.AdminApp.Controllers
             return RedirectToAction("Index");
         }
 
-        
+        [Route("Info")]
+        public IActionResult Info()
+        {
+            List<CartItemViewModel> cart = CartSession.GetObjectFromJson<List<CartItemViewModel>>(HttpContext.Session, "cart");
+           // int index = isExist(id);
+           //List<CartItemViewModel> xuly= CartSession.GetObjectFromJson<List<CartItemViewModel>>(HttpContext.Session, "xuly");
+           // xuly.Add(new CartItemViewModel { Id = 1.ToString(), Prod_ID = cart[1].Prod_ID, Prod_Name = cart[1].Prod_Name, Price = cart[1].Price, Quantity = cart[1].Quantity });
+           // CartSession.SetObjectAsJson(HttpContext.Session, "xuly", cart);
+           // List<CartItemViewModel> xu = CartSession.GetObjectFromJson<List<CartItemViewModel>>(HttpContext.Session, "xuly");
+           // var u=  HttpContext.Session.GetString(SystemConstants.AppSettings.Token);
+            //  LoginRequest user = CartSession.GetUser<LoginRequest>(HttpContext.Session, "Token");
+            //User.Identity.Name;
+           
+
+           // cart.Clear();
+            CartSession.SetObjectAsJson(HttpContext.Session, "cart", cart);
+            return View();
+        }
 
 
         private int isExist(int id)

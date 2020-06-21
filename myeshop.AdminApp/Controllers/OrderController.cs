@@ -41,16 +41,16 @@ namespace myeshop.AdminApp.Controllers
                 });
             }
 
-            var user = CartSession.GetUser(HttpContext.Session,"Token");
-            string iduser = user.UserName;
-            var result = await _order.Ordercart(iduser, order);
-            if (result.IsSuccessed)
-            {
-                CartSession.SetObjectAsJson(HttpContext.Session, "cart", cart);
-                cart.Clear();
-                return RedirectToAction("Index");
-            }
-            ModelState.AddModelError("", result.Message);
+            //var user = CartSession.GetUser(HttpContext.Session,"Token");
+            //string iduser = user.UserName;
+            //var result = await _order.Ordercart(iduser, order);
+            //if (result.IsSuccessed)
+            //{
+            //    CartSession.SetObjectAsJson(HttpContext.Session, "cart", cart);
+            //    cart.Clear();
+            //    return RedirectToAction("Index");
+            //}
+            //ModelState.AddModelError("", result.Message);
             return View();
         }
     }
