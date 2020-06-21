@@ -42,15 +42,8 @@ namespace myeshop.AdminApp.Services
             client.BaseAddress = new Uri("https://localhost:5001");
             var response = await client.PutAsync("/api/Products/", httpContent);
             var Token = await response.Content.ReadAsStringAsync();
-             
-            if (response.IsSuccessStatusCode)
-            {
-                int t = (int)JsonConvert.DeserializeObject(Token, typeof(int));
-                return new ApiSuccessResult<int>(t);
-            }    
-                
 
-            return new ApiErrorResult<int>(Token);
+            return new ApiSuccessResult<int>();
         }
         public async Task<ApiResult<bool>> Delete(int productId)
         {
